@@ -22,7 +22,7 @@ create table books
 	book_descnbtion varchar(150),
 	book_author     varchar(30),
 	is_translator   bit,
-	cover_page      image,
+	cover_page      varbinary(max),
 	admin_ID        int  foreign Key REFERENCES  admins(admin_ID)
 	);
 
@@ -36,6 +36,7 @@ create table user_borrow_books
 (
 	user_ID int  foreign Key REFERENCES  users(user_ID),
 	admin_ID int  foreign Key REFERENCES  admins(admin_ID),
+	book_ID int  foreign Key REFERENCES  books(book_ID),
 	strart_date date not null,
 	end_date date not null,
 );

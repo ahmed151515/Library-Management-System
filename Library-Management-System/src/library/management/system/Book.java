@@ -4,6 +4,8 @@
  */
 package library.management.system;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.sql.SQLException;
 import java.util.LinkedList;
 /**
  *
@@ -11,6 +13,16 @@ import java.util.LinkedList;
  */
 public class Book
 {
+    private static int count;
+
+    static {
+        try {
+            count = Database.count_books() + 1;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private int book_id;
 	private String name;
 	private int num_page;
@@ -18,11 +30,11 @@ public class Book
 	private String author_name;
 	private boolean  translator;
 	private String describtion;
-	private BufferedImage cover_page;
+	private File cover_page;
 
     public Book()
     {
-        this.book_id = 0;
+        this.book_id = count;
         this.name = null;
         this.num_page = 0;
         this.category = null;
@@ -30,13 +42,14 @@ public class Book
         this.translator = false;
         this.describtion = null;
         this.cover_page = null;
+        count++;
     }
     
-    public Book(int book_id, String name, int num_page, LinkedList<String> category,
+    public Book(String name, int num_page, LinkedList<String> category,
             String author_name, boolean translator, String describtion,
-            BufferedImage cover_page)
+            File cover_page)
     {
-        this.book_id = book_id;
+        this.book_id = count;
         this.name = name;
         this.num_page = num_page;
         this.category = category;
@@ -44,6 +57,7 @@ public class Book
         this.translator = translator;
         this.describtion = describtion;
         this.cover_page = cover_page;
+        count++;
     }
 
     public int getBook_id()
@@ -132,17 +146,11 @@ public class Book
         this.describtion = describtion;
     }
 
-    public BufferedImage getCover_page()
-    {
+    public File getCover_page() {
         return cover_page;
     }
 
-    public void setCover_page(BufferedImage cover_page)
-    {
+    public void setCover_page(File cover_page) {
         this.cover_page = cover_page;
     }
-    
-    
-    
-    
 }
