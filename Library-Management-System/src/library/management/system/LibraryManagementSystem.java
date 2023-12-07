@@ -13,9 +13,10 @@ import java.sql.SQLException;
  */
 public class LibraryManagementSystem
 {
-    static String url = "jdbc:sqlserver://192.168.1.12:1433;"
-            + "Database=Library_Management_System;"
-//            + "IntegratedSecurity=true;"
+    static String url = "jdbc:sqlserver://"
+            + "192.168.1.12:1433;" // server name or IP and port
+            + "Database=Library_Management_System;" // database name
+//            + "IntegratedSecurity=true;" // if you want use Windows Authentication
             + "encrypt=true;"
             + "trustServerCertificate=true";
     static  String user = "admin";
@@ -27,16 +28,10 @@ public class LibraryManagementSystem
 
         Database DB = new Database(url, user, password);
 
-        ResultSet rs = DB.select_stmt("*", "users", "user_id = 2");
-        rs.next();
-        User user1 = new User(rs.getInt(1),rs.getString(2),rs.getString(3));
 
-        System.out.println("id: " + user1.getUser_ID() + " passwrod: " + user1.getPassword() + " email: "+ user1.getEmail());
+        User ahmed = new User("12345", "12345@gmail.com");
 
-        user1.setPassword("99999");
-        user1.setEmail("8768@gmail.com");
-
-        int i = DB.update_user(user1);
+        DB.insert_user(ahmed);
 
 
         DB.close();
