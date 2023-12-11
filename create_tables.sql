@@ -22,7 +22,6 @@ create table books
 	book_descnbtion varchar(150),
 	book_author     varchar(30),
 	is_translator   bit,
-	cover_page      varbinary(max),
 	admin_ID        int  foreign Key REFERENCES  admins(admin_ID)
 	);
 

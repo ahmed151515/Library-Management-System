@@ -2,20 +2,37 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package com.mycompany.guitest.Gui;
+package library.management.system;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 
 /**
  *
  * @author Ahmed
  */
-public class User extends javax.swing.JPanel {
+public class User_gui extends javax.swing.JPanel {
 
     /**
      * Creates new form User
      */
-    public User() {
+    public User_gui() {
         initComponents();
+        String[] columns = {"book_ID",
+                "book_name",
+                "num_page",
+                "book_descnbtion",
+                "book_author",
+                "is_translator",
+                "admin_ID"};
+        DefaultTableModel model = new DefaultTableModel(columns, 0);
+        jTable1 = new JTable(model);
+        jScrollPane1 = new JScrollPane(jTable1);
+        GUI.frame.add(jScrollPane1, BorderLayout.CENTER);
+
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -99,5 +116,6 @@ public class User extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+
     // End of variables declaration//GEN-END:variables
 }

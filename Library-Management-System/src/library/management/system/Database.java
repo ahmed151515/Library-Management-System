@@ -8,9 +8,29 @@ import java.sql.*;
  * Database - to handel database part
  */
 public class Database {
+	static String url = "jdbc:sqlserver://"
+			+ "192.168.1.12:1433;" // server name or IP and port
+			+ "Database=Library_Management_System;" // database name
+//            + "IntegratedSecurity=true;" // if you want use Windows Authentication
+			+ "encrypt=true;"
+			+ "trustServerCertificate=true";
+	static  String user = "admin";
+	static  String password = "admin";
 	private static Connection con;
+
+	static {
+		try {
+			con = DriverManager.getConnection(url, user, password);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
 	private static PreparedStatement stmt;
 	private static String sql;
+
+
+
 
 	public Connection getCon() {
 		return con;
@@ -20,21 +40,21 @@ public class Database {
 		return stmt;
 	}
 
-	public Database(String url) throws SQLException {
-		try {
-			con = DriverManager.getConnection(url);
-		} catch (SQLException e) {
-			System.out.println("Connection failure");
-		}
-	}
-
-	public Database(String url, String usre, String password) throws SQLException {
-		try {
-			con = DriverManager.getConnection(url, usre, password);
-		} catch (SQLException e) {
-			System.out.println("Connection failure");
-		}
-	}
+//	public Database(String url) throws SQLException {
+//		try {
+//			con = DriverManager.getConnection(url);
+//		} catch (SQLException e) {
+//			System.out.println("Connection failure");
+//		}
+//	}
+//
+//	public Database(String url, String usre, String password) throws SQLException {
+//		try {
+//			con = DriverManager.getConnection(url, usre, password);
+//		} catch (SQLException e) {
+//			System.out.println("Connection failure");
+//		}
+//	}
 
 	// close Connection
 	public void close() throws SQLException {

@@ -4,8 +4,10 @@
  */
 package library.management.system;
 
+import java.awt.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.*;
 
 /**
  *
@@ -26,15 +28,18 @@ public class LibraryManagementSystem
      */
     public static void main(String[] args) throws SQLException {
 
-        Database DB = new Database(url, user, password);
-
-
-        User ahmed = new User("12345", "12345@gmail.com");
-
-        DB.insert_user(ahmed);
-
-
-        DB.close();
+//
+            new GUI();
+//        Database DB = new Database(url, user, password);
+//
+//        ResultSet rs = DB.select_stmt("*", "users");
+//
+//        while (rs.next())
+//        {
+//            System.out.println("id: " + rs.getInt(1) + " password: " + rs.getString(2)
+//                    + "email: "+ rs.getString(3));
+//        }
+//        DB.close_stmt();
     }
     
 }

@@ -2,7 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package com.mycompany.guitest.Gui;
+package library.management.system;
+import javax.swing.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -51,7 +54,11 @@ public class NLogin extends javax.swing.JPanel {
         loginButton.setText("LOGIN");
         loginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginButtonActionPerformed(evt);
+                try {
+                    loginButtonActionPerformed(evt);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -93,8 +100,25 @@ public class NLogin extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) throws SQLException {//GEN-FIRST:event_loginButtonActionPerformed
         // TODO add your handling code here:
+        String userId = userIdTextField.getText();
+        char[] passwordChars = passwordTextField.getPassword();
+        String password = new String(passwordChars);
+
+        // Now you have the data, and you can use it as needed
+
+        Database db = new Database();
+        ResultSet rs = db.select_stmt("*", "users",
+                "user_id = " + userId
+                        + " and password = \'" + password+'\'');
+        if (rs.next())
+        {
+            GUI.cardLayout.show(GUI.cardPanel, "userGui");
+        }else
+        {
+            JOptionPane.showMessageDialog(GUI.frame,"user id or password is wrong");
+        }
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void userIdTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userIdTextFieldActionPerformed
@@ -110,4 +134,6 @@ public class NLogin extends javax.swing.JPanel {
     private javax.swing.JLabel userIdLabel;
     private javax.swing.JTextField userIdTextField;
     // End of variables declaration//GEN-END:variables
+
+
 }
