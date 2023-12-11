@@ -30,7 +30,7 @@ public class Book
 	private String author_name;
 	private boolean  translator;
 	private String describtion;
-	private File cover_page;
+
 
     public Book()
     {
@@ -41,13 +41,12 @@ public class Book
         this.author_name = null;
         this.translator = false;
         this.describtion = null;
-        this.cover_page = null;
+
         count++;
     }
     
     public Book(String name, int num_page, LinkedList<String> category,
-            String author_name, boolean translator, String describtion,
-            File cover_page)
+            String author_name, boolean translator, String describtion)
     {
         this.book_id = count;
         this.name = name;
@@ -56,7 +55,7 @@ public class Book
         this.author_name = author_name;
         this.translator = translator;
         this.describtion = describtion;
-        this.cover_page = cover_page;
+
         count++;
     }
 
@@ -146,11 +145,4 @@ public class Book
         this.describtion = describtion;
     }
 
-    public File getCover_page() {
-        return cover_page;
-    }
-
-    public void setCover_page(File cover_page) {
-        this.cover_page = cover_page;
-    }
 }

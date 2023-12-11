@@ -14,8 +14,8 @@ public class Database {
 //            + "IntegratedSecurity=true;" // if you want use Windows Authentication
 			+ "encrypt=true;"
 			+ "trustServerCertificate=true";
-	static  String user = "admin";
-	static  String password = "admin";
+	static String user = "admin";
+	static String password = "admin";
 	private static Connection con;
 
 	static {
@@ -28,8 +28,6 @@ public class Database {
 
 	private static PreparedStatement stmt;
 	private static String sql;
-
-
 
 
 	public Connection getCon() {
@@ -133,6 +131,7 @@ public class Database {
 		}
 		return null;
 	}
+
 	// handle insert Statement to user
 	public int insert_user(User user) throws SQLException {
 		sql = "insert into users values (?,?,?);";
@@ -191,6 +190,7 @@ public class Database {
 
 		return result;
 	}
+
 	// handle insert Statement to book
 	public int insert_book(Admin admin, Book book) throws SQLException, IOException {
 		for (String category : book.getCategory()) {
@@ -211,7 +211,7 @@ public class Database {
 			}
 		}
 
-		sql = "insert into books values (?,?,?,?,?,?,?,?);";
+		sql = "insert into books values (?,?,?,?,?,?,?);";
 		int result = 0;
 
 		try {
@@ -223,10 +223,9 @@ public class Database {
 			stmt.setString(4, book.getDescribtion());
 			stmt.setString(5, book.getAuthor_name());
 			stmt.setBoolean(6, book.isTranslator());
-			FileInputStream fis = new FileInputStream(book.getCover_page());
-			stmt.setBinaryStream(7, fis, book.getCover_page().length());
-			stmt.setInt(8, admin.getUser_ID());
-			fis.close();
+
+			stmt.setInt(7, admin.getUser_ID());
+
 			result = stmt.executeUpdate();
 		} catch (Exception e) {
 			stmt.close();
@@ -259,7 +258,7 @@ public class Database {
 				+ " book_descnbtion=?," // 3
 				+ " book_author=?,"  // 4
 				+ " is_translator=?,"  // 5
-				+ " cover_page=?,"  // 6
+
 				+ " admin_ID=?"  // 7
 				+ " where book_ID=?;"; // 8
 		int result = 0;
@@ -273,10 +272,9 @@ public class Database {
 			stmt.setString(3, book.getDescribtion());
 			stmt.setString(4, book.getAuthor_name());
 			stmt.setBoolean(5, book.isTranslator());
-			FileInputStream fis = new FileInputStream(book.getCover_page());
-			stmt.setBinaryStream(6, fis, book.getCover_page().length());
-			stmt.setInt(7, admin.getUser_ID());
-			fis.close();
+
+			stmt.setInt(6, admin.getUser_ID());
+
 			result = stmt.executeUpdate();
 
 		} catch (Exception e) {
@@ -319,6 +317,7 @@ public class Database {
 		}
 		return result;
 	}
+
 	// handle insert Statement to borrow
 	public int insert_borrow(Borrow borrow) throws SQLException {
 
