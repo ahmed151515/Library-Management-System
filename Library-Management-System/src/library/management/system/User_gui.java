@@ -65,8 +65,8 @@ public class User_gui extends javax.swing.JPanel {
 		jScrollPane1 = new JScrollPane(jTable1);
 		GUI.frame.add(jScrollPane1, BorderLayout.CENTER);
 
-		Database db = new Database();
-		ResultSet resultSet = db.select_stmt("*", "books");
+
+		ResultSet resultSet = Database.select_stmt("*", "books");
 		while (resultSet.next()) {
 			Object[] row = {
 					resultSet.getInt("book_ID")

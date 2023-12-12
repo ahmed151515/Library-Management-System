@@ -28,6 +28,7 @@ public class Database {
 
 	private static PreparedStatement stmt;
 	private static String sql;
+	public static ResultSet rs;
 
 
 	public Connection getCon() {
@@ -38,55 +39,43 @@ public class Database {
 		return stmt;
 	}
 
-//	public Database(String url) throws SQLException {
-//		try {
-//			con = DriverManager.getConnection(url);
-//		} catch (SQLException e) {
-//			System.out.println("Connection failure");
-//		}
-//	}
-//
-//	public Database(String url, String usre, String password) throws SQLException {
-//		try {
-//			con = DriverManager.getConnection(url, usre, password);
-//		} catch (SQLException e) {
-//			System.out.println("Connection failure");
-//		}
-//	}
+
 
 	// close Connection
-	public void close() throws SQLException {
+	public static void close() throws SQLException {
+		rs.close();
 		stmt.close();
 		con.close();
 	}
 
-	public void close_stmt() throws SQLException {
+	public static void close_stmt() throws SQLException {
+		rs.close();
 		stmt.close();
 	}
 
 
 	// count users to set count in user
-	public static int count_users() throws SQLException {
-
-		int count = 0;
-		sql = "select COUNT(user_ID) from users;";
-		try {
-			stmt = con.prepareStatement(sql);
-			ResultSet rs = stmt.executeQuery();
-			if (rs.next()) {
-				count = rs.getInt(1);
-			}
-			stmt.close();
-
-		} catch (Exception e) {
-			stmt.close();
-			System.out.println(e);
-		}
-		return count;
-	}
-
+//	public static int count_users() throws SQLException {
+//
+//		int count = 0;
+//		sql = "select COUNT(user_ID) from users;";
+//		try {
+//			stmt = con.prepareStatement(sql);
+//			ResultSet rs = stmt.executeQuery();
+//			if (rs.next()) {
+//				count = rs.getInt(1);
+//			}
+//			stmt.close();
+//
+//		} catch (Exception e) {
+//			stmt.close();
+//			System.out.println(e);
+//		}
+//		return count;
+//	}
+//
 	// count books to set count in book
-	public static int count_books() throws SQLException {
+	public  static int count_books() throws SQLException {
 
 		int count = 0;
 		sql = "select COUNT(book_ID) from books;";
@@ -106,44 +95,46 @@ public class Database {
 	}
 
 	// handle select Statement
-	public ResultSet select_stmt(String columns, String tables) throws SQLException {
+	public static ResultSet select_stmt(String columns, String tables) throws SQLException {
 		sql = "select " + columns + " from " + tables + ";";
 
 		try {
 			stmt = con.prepareStatement(sql);
-			return stmt.executeQuery();
+			rs = stmt.executeQuery();
+			return rs;
 		} catch (Exception e) {
-			stmt.close();
+			close_stmt();
 			System.out.println(e);
 		}
 		return null;
 	}
 
 	// handle select Statement and where
-	public ResultSet select_stmt(String columns, String tables, String conditions) throws SQLException {
+	public static ResultSet select_stmt(String columns, String tables, String conditions) throws SQLException {
 		sql = "select " + columns + " from " + tables + " where " + conditions + ";";
 		try {
 			stmt = con.prepareStatement(sql);
-			return stmt.executeQuery();
+			rs =  stmt.executeQuery();
+			return  rs;
 		} catch (Exception e) {
-			stmt.close();
+			close_stmt();
 			System.out.println(e);
 		}
 		return null;
 	}
 
 	// handle insert Statement to user
-	public int insert_user(User user) throws SQLException {
-		sql = "insert into users values (?,?,?);";
+	public static int insert_user(User user) throws SQLException {
+		sql = "insert into users values (?,?);";
 		int result = 0;
 		try {
 
 
 			stmt = con.prepareStatement(sql);
 
-			stmt.setInt(1, user.getUser_ID());
-			stmt.setString(2, user.getPassword());
-			stmt.setString(3, user.getEmail());
+
+			stmt.setString(1, user.getPassword());
+			stmt.setString(2, user.getEmail());
 			result = stmt.executeUpdate();
 		} catch (Exception e) {
 			stmt.close();
@@ -153,7 +144,7 @@ public class Database {
 		return result;
 	}
 
-	public int update_user(User user) throws SQLException {
+	public static int update_user(User user) throws SQLException {
 		sql = "update users set password=?, email=? where user_id = ?;";
 		int result = 0;
 		try {
@@ -171,7 +162,7 @@ public class Database {
 		return result;
 	}
 
-	public int delete_user(User user) throws SQLException {
+	public static int delete_user(User user) throws SQLException {
 		sql = "delete from users where user_ID=?;";
 		int result = 0;
 		try {
@@ -192,7 +183,30 @@ public class Database {
 	}
 
 	// handle insert Statement to book
-	public int insert_book(Admin admin, Book book) throws SQLException, IOException {
+	public static int insert_book(Admin admin, Book book) throws SQLException, IOException {
+
+
+		sql = "insert into books values (?,?,?,?,?,?,?);";
+		int result = 0;
+
+		try {
+			stmt = con.prepareStatement(sql);
+
+			stmt.setInt(1,book.getBook_id());
+			stmt.setString(2, book.getName());
+			stmt.setInt(3, book.getNum_page());
+			stmt.setString(4, book.getDescribtion());
+			stmt.setString(5, book.getAuthor_name());
+			stmt.setBoolean(6, book.isTranslator());
+
+			stmt.setInt(7, admin.getUser_ID());
+
+			result = stmt.executeUpdate();
+		} catch (SQLException e) {
+			stmt.close();
+			e.printStackTrace();
+
+		}
 		for (String category : book.getCategory()) {
 
 			sql = "insert into book_categorise values (?,?);";
@@ -211,31 +225,10 @@ public class Database {
 			}
 		}
 
-		sql = "insert into books values (?,?,?,?,?,?,?);";
-		int result = 0;
-
-		try {
-			stmt = con.prepareStatement(sql);
-
-			stmt.setInt(1, book.getBook_id());
-			stmt.setString(2, book.getName());
-			stmt.setInt(3, book.getNum_page());
-			stmt.setString(4, book.getDescribtion());
-			stmt.setString(5, book.getAuthor_name());
-			stmt.setBoolean(6, book.isTranslator());
-
-			stmt.setInt(7, admin.getUser_ID());
-
-			result = stmt.executeUpdate();
-		} catch (Exception e) {
-			stmt.close();
-			System.out.println(e);
-		}
-
 		return result;
 	}
 
-	public int update_book(Admin admin, Book book) throws SQLException, IOException {
+	public static int update_book(Admin admin, Book book) throws SQLException, IOException {
 		for (String category : book.getCategory()) {
 
 			sql = "update book_categorise set category=? where book_ID=?;";
@@ -286,7 +279,7 @@ public class Database {
 		return result;
 	}
 
-	public int delete_book(Admin admin, Book book) throws SQLException, IOException {
+	public static int delete_book(Admin admin, Book book) throws SQLException, IOException {
 
 
 		sql = "delete from book_categorise where book_ID=?;";
@@ -319,7 +312,7 @@ public class Database {
 	}
 
 	// handle insert Statement to borrow
-	public int insert_borrow(Borrow borrow) throws SQLException {
+	public static int insert_borrow(Borrow borrow) throws SQLException {
 
 		java.sql.Date date;
 		sql = "insert into user_borrow_books values (?,?,?,?,?);";
@@ -343,10 +336,15 @@ public class Database {
 		return result;
 	}
 
-	public int update_borrow(Borrow borrow) throws SQLException {
+	public static int update_borrow(Borrow borrow) throws SQLException {
 
 		java.sql.Date date;
-		sql = "update user_borrow_books set " + "user_ID=?," + " admin_ID=?," + " strart_date=?," + " end_date=?" + "where book_id=?;";
+		sql = "update user_borrow_books set "
+				+ "user_ID=?,"
+				+ " admin_ID=?,"
+				+ " strart_date=?,"
+				+ " end_date=?"
+				+ "where book_id=?;";
 		int result = 0;
 		try {
 			stmt = con.prepareStatement(sql);
@@ -366,7 +364,7 @@ public class Database {
 		return result;
 	}
 
-	public int delete_borrow(Borrow borrow) throws SQLException {
+	public static int delete_borrow(Borrow borrow) throws SQLException {
 
 		java.sql.Date date;
 		sql = "delete from user_borrow_books where book_id=?";

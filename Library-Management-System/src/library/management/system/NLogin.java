@@ -108,8 +108,8 @@ public class NLogin extends javax.swing.JPanel {
 
         // Now you have the data, and you can use it as needed
 
-        Database db = new Database();
-        ResultSet rs = db.select_stmt("*", "users",
+
+        ResultSet rs = Database.select_stmt("*", "users",
                 "user_id = " + userId
                         + " and password = \'" + password+'\'');
         if (rs.next())

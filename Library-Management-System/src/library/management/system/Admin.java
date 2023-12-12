@@ -18,7 +18,7 @@ public class Admin extends User
 
     public Admin(int user_ID, String password, String email)
     {
-        super(password, email);
+        super(user_ID,password, email);
     }
     
 }
