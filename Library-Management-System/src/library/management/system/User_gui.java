@@ -59,6 +59,7 @@ public class User_gui extends javax.swing.JPanel {
 				, "Book Author"
 				, "Is Translator"
 				, "Admin ID"
+				, "categorise"
 		};
 		DefaultTableModel model = new DefaultTableModel(columns, 0);
 		jTable1 = new JTable(model);
@@ -67,7 +68,9 @@ public class User_gui extends javax.swing.JPanel {
 
 
 		ResultSet resultSet = Database.select_stmt("*", "books");
+
 		while (resultSet.next()) {
+			String categories = Database.getBookCategories(resultSet.getInt("book_ID"));
 			Object[] row = {
 					resultSet.getInt("book_ID")
 					, resultSet.getString("book_name")
@@ -75,7 +78,10 @@ public class User_gui extends javax.swing.JPanel {
 					, resultSet.getString("book_descnbtion")
 					, resultSet.getString("book_author")
 					, resultSet.getBoolean("is_translator")
-					, resultSet.getInt("admin_ID")};
+					, resultSet.getInt("admin_ID")
+					, categories
+			};
+
 			model.addRow(row);
 		}
 		jScrollPane1.setViewportView(jTable1);

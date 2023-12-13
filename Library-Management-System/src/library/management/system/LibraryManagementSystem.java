@@ -32,17 +32,17 @@ public class LibraryManagementSystem
     public static void main(String[] args) throws SQLException, IOException {
 
 //
-//            new GUI();
-        Book   book = new Book(
-                "database",
-                500,
-                new LinkedList<String>(Arrays.asList("IS", "CS"))
-                ,"ahmed",
-                false,"book");
-        Admin admin = new Admin(1,"dfs", "fgd");
-
-
-        Database.insert_book(admin,book);
+            new GUI();
+//        Book   book = new Book(
+//                "database",
+//                500,
+//                new LinkedList<String>(Arrays.asList("IS", "CS"))
+//                ,"ahmed",
+//                false,"book");
+//        Admin admin = new Admin(1,"dfs", "fgd");
+//
+//
+//        Database.insert_book(admin,book);
 
 
 

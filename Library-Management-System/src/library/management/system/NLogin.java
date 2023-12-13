@@ -114,9 +114,11 @@ public class NLogin extends javax.swing.JPanel {
                         + " and password = \'" + password+'\'');
         if (rs.next())
         {
+            Database.close_stmt();
             GUI.cardLayout.show(GUI.cardPanel, "userGui");
         }else
         {
+            Database.close_stmt();
             JOptionPane.showMessageDialog(GUI.frame,"user id or password is wrong");
         }
     }//GEN-LAST:event_loginButtonActionPerformed

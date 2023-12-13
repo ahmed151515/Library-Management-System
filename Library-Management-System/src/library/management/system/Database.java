@@ -28,7 +28,7 @@ public class Database {
 
 	private static PreparedStatement stmt;
 	private static String sql;
-	public static ResultSet rs;
+
 
 
 	public Connection getCon() {
@@ -43,13 +43,13 @@ public class Database {
 
 	// close Connection
 	public static void close() throws SQLException {
-		rs.close();
+
 		stmt.close();
 		con.close();
 	}
 
 	public static void close_stmt() throws SQLException {
-		rs.close();
+
 		stmt.close();
 	}
 
@@ -100,8 +100,8 @@ public class Database {
 
 		try {
 			stmt = con.prepareStatement(sql);
-			rs = stmt.executeQuery();
-			return rs;
+
+			return stmt.executeQuery();
 		} catch (Exception e) {
 			close_stmt();
 			System.out.println(e);
@@ -114,8 +114,8 @@ public class Database {
 		sql = "select " + columns + " from " + tables + " where " + conditions + ";";
 		try {
 			stmt = con.prepareStatement(sql);
-			rs =  stmt.executeQuery();
-			return  rs;
+
+			return  stmt.executeQuery();
 		} catch (Exception e) {
 			close_stmt();
 			System.out.println(e);
@@ -180,6 +180,19 @@ public class Database {
 		}
 
 		return result;
+	}
+
+	public static String getBookCategories(int bookId) throws SQLException {
+		// Assuming you have a method to retrieve categories for a book based on book_ID
+		ResultSet resultSet = select_stmt("category", "book_categorise", "book_ID = " + bookId);
+		StringBuilder categories = new StringBuilder();
+		while (resultSet.next()) {
+			categories.append(resultSet.getString("category")).append(", ");
+		}
+		if (categories.length() > 2) {
+			categories.setLength(categories.length() - 2); // Remove the trailing comma and space
+		}
+		return categories.toString();
 	}
 
 	// handle insert Statement to book
