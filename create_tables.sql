@@ -2,14 +2,14 @@ use Library_Management_System;
 
 create table admins
 (
-	admin_ID int primary key,
+	admin_ID int primary key IDENTITY(1,1),
 	password varchar(30) not null,
 	email    varchar(50) unique,
 );
 
 create table users
 (
-	user_ID int primary key,
+	user_ID int primary key IDENTITY(1,1),
 	password varchar(30) not null,
 	email    varchar(50) unique,
 );
@@ -34,7 +34,6 @@ create table book_categorise
 create table user_borrow_books
 (
 	user_ID int  foreign Key REFERENCES  users(user_ID),
-	admin_ID int  foreign Key REFERENCES  admins(admin_ID),
 	book_ID int  foreign Key REFERENCES  books(book_ID),
 	strart_date date not null,
 	end_date date not null,

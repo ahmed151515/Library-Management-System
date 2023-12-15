@@ -108,15 +108,17 @@ public class NLogin extends javax.swing.JPanel {
 
         // Now you have the data, and you can use it as needed
 
-        Database db = new Database();
-        ResultSet rs = db.select_stmt("*", "users",
+
+        ResultSet rs = Database.select_stmt("*", "users",
                 "user_id = " + userId
                         + " and password = \'" + password+'\'');
         if (rs.next())
         {
+            Database.close_stmt();
             GUI.cardLayout.show(GUI.cardPanel, "userGui");
         }else
         {
+            Database.close_stmt();
             JOptionPane.showMessageDialog(GUI.frame,"user id or password is wrong");
         }
     }//GEN-LAST:event_loginButtonActionPerformed

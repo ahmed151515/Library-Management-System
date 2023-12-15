@@ -5,8 +5,11 @@
 package library.management.system;
 
 import java.awt.*;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.LinkedList;
 import javax.swing.*;
 
 /**
@@ -26,20 +29,23 @@ public class LibraryManagementSystem
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws SQLException, IOException {
 
 //
             new GUI();
-//        Database DB = new Database(url, user, password);
+//        Book   book = new Book(
+//                "database",
+//                500,
+//                new LinkedList<String>(Arrays.asList("IS", "CS"))
+//                ,"ahmed",
+//                false,"book");
+//        Admin admin = new Admin(1,"dfs", "fgd");
 //
-//        ResultSet rs = DB.select_stmt("*", "users");
 //
-//        while (rs.next())
-//        {
-//            System.out.println("id: " + rs.getInt(1) + " password: " + rs.getString(2)
-//                    + "email: "+ rs.getString(3));
-//        }
-//        DB.close_stmt();
+//        Database.insert_book(admin,book);
+
+
+
     }
     
 }

@@ -15,15 +15,15 @@ public class Book
 {
     private static int count;
 
-    static {
-        try {
-            count = Database.count_books() + 1;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
+	static {
+		try {
+			count = Database.count_books() + 1;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
 
-    private int book_id;
+	private int book_id;
 	private String name;
 	private int num_page;
 	private LinkedList<String> category;
@@ -34,7 +34,7 @@ public class Book
 
     public Book()
     {
-        this.book_id = count;
+        this.book_id = count++;
         this.name = null;
         this.num_page = 0;
         this.category = null;
@@ -42,13 +42,13 @@ public class Book
         this.translator = false;
         this.describtion = null;
 
-        count++;
+
     }
     
     public Book(String name, int num_page, LinkedList<String> category,
             String author_name, boolean translator, String describtion)
     {
-        this.book_id = count;
+        this.book_id = count++;
         this.name = name;
         this.num_page = num_page;
         this.category = category;
@@ -56,7 +56,6 @@ public class Book
         this.translator = translator;
         this.describtion = describtion;
 
-        count++;
     }
 
     public int getBook_id()
