@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <Properties>
+    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+      <Color blue="41" green="3f" red="3c" type="rgb"/>
+    </Property>
+  </Properties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <EmptySpace pref="348" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="LabelBookName" alignment="0" max="32767" attributes="0"/>
+                          <Component id="TextFieldBookName" alignment="0" max="32767" attributes="0"/>
+                          <Component id="TextFieldBookAuthor" alignment="0" pref="361" max="32767" attributes="0"/>
+                          <Component id="TextFieldBookPages" alignment="0" pref="361" max="32767" attributes="0"/>
+                          <Component id="TextFieldBookCategory" alignment="0" pref="361" max="32767" attributes="0"/>
+                          <Component id="LabelBookAuthor" alignment="0" max="32767" attributes="0"/>
+                          <Component id="LabelBookPages" alignment="0" max="32767" attributes="0"/>
+                          <Component id="LabelBookCategory" alignment="0" max="32767" attributes="0"/>
+                          <Component id="TextFieldBookDesc" alignment="0" pref="361" max="32767" attributes="0"/>
+                          <Component id="LabelBookDesc" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="341" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="LabelEditPage" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="444" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
+              <Component id="LabelEditPage" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+              <Component id="LabelBookName" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="TextFieldBookName" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+              <Component id="LabelBookAuthor" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="TextFieldBookAuthor" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+              <Component id="LabelBookPages" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="TextFieldBookPages" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+              <Component id="LabelBookCategory" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="TextFieldBookCategory" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+              <Component id="LabelBookDesc" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="TextFieldBookDesc" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="57" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JTextField" name="TextFieldBookName">
+    </Component>
+    <Component class="javax.swing.JTextField" name="TextFieldBookAuthor">
+    </Component>
+    <Component class="javax.swing.JTextField" name="TextFieldBookPages">
+    </Component>
+    <Component class="javax.swing.JTextField" name="TextFieldBookCategory">
+    </Component>
+    <Component class="javax.swing.JLabel" name="LabelBookName">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Book Name"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="LabelBookAuthor">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Book author"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="LabelBookPages">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Book pages"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="LabelBookCategory">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Category"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="LabelEditPage">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="36" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Edit page"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="TextFieldBookDesc">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TextFieldBookDescActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="LabelBookDesc">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Description"/>
+      </Properties>
+    </Component>
+  </SubComponents>
+</Form>

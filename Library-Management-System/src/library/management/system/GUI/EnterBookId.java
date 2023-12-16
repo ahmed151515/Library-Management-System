@@ -29,29 +29,50 @@ public class EnterBookId extends javax.swing.JPanel {
 
         EnterBookId = new javax.swing.JTextField();
         LabelEnterBookId = new javax.swing.JLabel();
+        EnterButton = new javax.swing.JButton();
 
         setLayout(new java.awt.GridBagLayout());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.ipadx = 422;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(12, 279, 286, 290);
+        gridBagConstraints.insets = new java.awt.Insets(12, 247, 0, 244);
         add(EnterBookId, gridBagConstraints);
 
         LabelEnterBookId.setText("Enter book id");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.ipadx = 416;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(228, 279, 0, 290);
+        gridBagConstraints.insets = new java.awt.Insets(185, 247, 0, 244);
         add(LabelEnterBookId, gridBagConstraints);
+
+        EnterButton.setText("Enter");
+        EnterButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EnterButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(42, 454, 177, 0);
+        add(EnterButton, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void EnterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnterButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EnterButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField EnterBookId;
+    private javax.swing.JButton EnterButton;
     private javax.swing.JLabel LabelEnterBookId;
     // End of variables declaration//GEN-END:variables
 }
