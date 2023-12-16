@@ -2,7 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package library.management.system;
+package library.management.system.GUI;
+import library.management.system.Database;
+
 import javax.swing.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -103,24 +105,20 @@ public class NLogin extends javax.swing.JPanel {
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) throws SQLException {//GEN-FIRST:event_loginButtonActionPerformed
         // TODO add your handling code here:
         String userId = userIdTextField.getText();
+
         char[] passwordChars = passwordTextField.getPassword();
         String password = new String(passwordChars);
 
-        // Now you have the data, and you can use it as needed
 
-
-        ResultSet rs = Database.select_stmt("*", "users",
-                "user_id = " + userId
-                        + " and password = \'" + password+'\'');
-        if (rs.next())
+	    if (Database.is_user(userId,password))
         {
-            Database.close_stmt();
+
             GUI.cardLayout.show(GUI.cardPanel, "userGui");
         }else
         {
-            Database.close_stmt();
             JOptionPane.showMessageDialog(GUI.frame,"user id or password is wrong");
         }
+
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void userIdTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userIdTextFieldActionPerformed

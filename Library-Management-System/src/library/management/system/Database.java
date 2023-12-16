@@ -1,34 +1,35 @@
 package library.management.system;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.*;
 
 /**
- * Database class handles the interaction with the database for the Library Management System.
- * It provides methods for executing SQL queries and updates related to users, books, and borrowing records.
+ * Database class handles the interaction with the database for the Library
+ * Management System.
+ * It provides methods for executing SQL queries and updates related to users,
+ * books, and borrowing records.
  */
 public class Database {
 	// Database connection details
-	static String url = "jdbc:sqlserver://"
-			+ "192.168.1.12:1433;" // server name or IP and port
+	private static final String url = "jdbc:sqlserver://"
+			+ "DESKTOP-BBEFQFU;" // server name or IP and port
 			+ "Database=Library_Management_System;" // database name
-//            + "IntegratedSecurity=true;" // if you want use Windows Authentication
+			// + "IntegratedSecurity=true;" // if you want use Windows Authentication
 			+ "encrypt=true;"
 			+ "trustServerCertificate=true";
-	static String user = "admin";
-	static String password = "admin";
+	private static final String user = "admin";
+	private static final String password = "admin";
 
 	// Database connection object
 	private static Connection con;
-
 
 	// PreparedStatement and SQL statement for queries
 	private static PreparedStatement stmt;
 	private static String sql;
 
 	/**
-	 * Static block to establish a connection to the database when the class is loaded.
+	 * Static block to establish a connection to the database when the class is
+	 * loaded.
 	 * Throws a RuntimeException if a connection cannot be established.
 	 */
 	static {
@@ -39,14 +40,13 @@ public class Database {
 		}
 	}
 
-	public Connection getCon() {
+	public static Connection getCon() {
 		return con;
 	}
 
-	public PreparedStatement getStmt() {
+	public static PreparedStatement getStmt() {
 		return stmt;
 	}
-
 
 	// close Connection
 	public static void close() throws SQLException {
@@ -60,27 +60,26 @@ public class Database {
 		stmt.close();
 	}
 
-
 	// count users to set count in user
-//	public static int count_users() throws SQLException {
-//
-//		int count = 0;
-//		sql = "select COUNT(user_ID) from users;";
-//		try {
-//			stmt = con.prepareStatement(sql);
-//			ResultSet rs = stmt.executeQuery();
-//			if (rs.next()) {
-//				count = rs.getInt(1);
-//			}
-//			stmt.close();
-//
-//		} catch (Exception e) {
-//			stmt.close();
-//			System.out.println(e);
-//		}
-//		return count;
-//	}
-//
+	// public static int count_users() throws SQLException {
+	//
+	// int count = 0;
+	// sql = "select COUNT(user_ID) from users;";
+	// try {
+	// stmt = con.prepareStatement(sql);
+	// ResultSet rs = stmt.executeQuery();
+	// if (rs.next()) {
+	// count = rs.getInt(1);
+	// }
+	// stmt.close();
+	//
+	// } catch (Exception e) {
+	// stmt.close();
+	// System.out.println(e);
+	// }
+	// return count;
+	// }
+	//
 
 	// This function counts the number of books in the database.
 	public static int count_books() throws SQLException {
@@ -111,8 +110,8 @@ public class Database {
 		return count;
 	}
 
-
-	// This function executes a SELECT statement on the database and returns the ResultSet.
+	// This function executes a SELECT statement on the database and returns the
+	// ResultSet.
 	public static ResultSet select_stmt(String columns, String tables) throws SQLException {
 		// Construct the SQL query by concatenating columns and tables.
 		String sql = "SELECT " + columns + " FROM " + tables + ";";
@@ -131,8 +130,8 @@ public class Database {
 		return null;
 	}
 
-
-	// This function executes a parameterized SELECT statement on the database and returns the ResultSet.
+	// This function executes a parameterized SELECT statement on the database and
+	// returns the ResultSet.
 	public static ResultSet select_stmt(String columns, String tables, String conditions) throws SQLException {
 		// Construct the SQL query by concatenating columns, tables, and conditions.
 		String sql = "SELECT " + columns + " FROM " + tables + " WHERE " + conditions + ";";
@@ -151,6 +150,25 @@ public class Database {
 		return null;
 	}
 
+	public static boolean is_user(String id, String password) throws SQLException {
+		String sql = "SELECT * FROM users WHERE user_id=? AND password=?";
+
+		try (PreparedStatement stmt = con.prepareStatement(sql)) {
+			// Set parameters using PreparedStatement to prevent SQL injection.
+			stmt.setString(1, id);
+			stmt.setString(2, password);
+
+			try (ResultSet resultSet = stmt.executeQuery()) {
+
+				return resultSet.next();
+			}
+		} catch (Exception e) {
+
+			System.out.println(e);
+		}
+
+		return false;
+	}
 
 	// This function inserts a new user into the 'users' table.
 	public static int insert_user(User user) throws SQLException {
@@ -160,10 +178,8 @@ public class Database {
 		int result = 0; // Variable to store the execution result.
 
 		try {
-			// Prepare the statement for execution.
-			stmt = con.prepareStatement(sql);
 
-			// Set the values for the placeholders in the prepared statement.
+			stmt = con.prepareStatement(sql);
 			stmt.setString(1, user.getPassword());
 			stmt.setString(2, user.getEmail());
 
@@ -179,8 +195,8 @@ public class Database {
 		return result;
 	}
 
-
-	// This function updates user information in the 'users' table based on the user ID.
+	// This function updates user information in the 'users' table based on the user
+	// ID.
 	public static int update_user(User user) throws SQLException {
 		// SQL query to update user information in the 'users' table.
 		String sql = "UPDATE users SET password=?, email=? WHERE user_id = ?;";
@@ -208,7 +224,6 @@ public class Database {
 		return result;
 	}
 
-
 	// This function deletes a user from the 'users' table based on the user ID.
 	public static int delete_user(User user) throws SQLException {
 		// SQL query to delete a user from the 'users' table.
@@ -235,11 +250,10 @@ public class Database {
 		return result;
 	}
 
-
 	// This function retrieves book categories based on the provided book ID.
 	public static String getBookCategories(int bookId) throws SQLException {
 		// Execute a SELECT statement to retrieve categories for the specified book ID.
-		ResultSet resultSet = select_stmt("category", "book_categories", "book_ID = " + bookId);
+		ResultSet resultSet = select_stmt("category", "book_categorise", "book_ID = " + bookId);
 
 		// StringBuilder to store the retrieved categories.
 		StringBuilder categories = new StringBuilder();
@@ -258,9 +272,10 @@ public class Database {
 		return categories.toString();
 	}
 
-
-	// This function inserts a new book into the 'books' table along with its categories.
-	// It requires an Admin object for authorization and a Book object for book details.
+	// This function inserts a new book into the 'books' table along with its
+	// categories.
+	// It requires an Admin object for authorization and a Book object for book
+	// details.
 	public static int insert_book(Admin admin, Book book) throws SQLException, IOException {
 		// SQL query to insert values into the 'books' table.
 		String sql = "INSERT INTO books VALUES (?,?,?,?,?,?,?);";
@@ -314,9 +329,10 @@ public class Database {
 		return result;
 	}
 
-
-	// This function updates a book's information in the 'books' table and its categories in the 'book_categorise' table.
-// It requires an Admin object for authorization and a Book object for book details.
+	// This function updates a book's information in the 'books' table and its
+	// categories in the 'book_categorise' table.
+	// It requires an Admin object for authorization and a Book object for book
+	// details.
 	public static int update_book(Admin admin, Book book) throws SQLException, IOException {
 		// Update book categories in the 'book_categorise' table.
 		for (String category : book.getCategory()) {
@@ -343,13 +359,13 @@ public class Database {
 
 		// Update book information in the 'books' table.
 		String sql = "UPDATE books SET"
-				+ " book_name=?,"       // 1
-				+ " num_page=?,"        // 2
+				+ " book_name=?," // 1
+				+ " num_page=?," // 2
 				+ " book_descnbtion=?," // 3
-				+ " book_author=?,"     // 4
-				+ " is_translator=?,"    // 5
-				+ " admin_ID=?"          // 6
-				+ " WHERE book_ID=?;";   // 7
+				+ " book_author=?," // 4
+				+ " is_translator=?," // 5
+				+ " admin_ID=?" // 6
+				+ " WHERE book_ID=?;"; // 7
 		int result = 0;
 
 		try {
@@ -377,9 +393,9 @@ public class Database {
 		return result;
 	}
 
-
-	// This function deletes a book from the 'books' table along with its categories from the 'book_categorise' table.
-// It is assumed that the book deletion does not require admin authorization.
+	// This function deletes a book from the 'books' table along with its categories
+	// from the 'book_categorise' table.
+	// It is assumed that the book deletion does not require admin authorization.
 	public static int delete_book(Book book) throws SQLException, IOException {
 		// Delete book categories from the 'book_categorise' table.
 		String sql = "DELETE FROM book_categorise WHERE book_ID=?;";
@@ -420,9 +436,9 @@ public class Database {
 		return result;
 	}
 
-
 	// handle insert Statement to borrow
-	// This function inserts a record of a user borrowing a book into the 'user_borrow_books' table.
+	// This function inserts a record of a user borrowing a book into the
+	// 'user_borrow_books' table.
 	public static int insert_borrow(Borrow borrow) throws SQLException {
 		// SQL query to insert values into the 'user_borrow_books' table.
 		sql = "INSERT INTO user_borrow_books VALUES (?,?,?,?,?);";
@@ -453,8 +469,8 @@ public class Database {
 		return result;
 	}
 
-
-	// This function updates a record of a user borrowing a book in the 'user_borrow_books' table.
+	// This function updates a record of a user borrowing a book in the
+	// 'user_borrow_books' table.
 	public static int update_borrow(Borrow borrow) throws SQLException {
 		// SQL query to update values in the 'user_borrow_books' table.
 		sql = "UPDATE user_borrow_books SET "
@@ -490,8 +506,8 @@ public class Database {
 		return result;
 	}
 
-
-	// This function deletes a record of a user borrowing a book from the 'user_borrow_books' table.
+	// This function deletes a record of a user borrowing a book from the
+	// 'user_borrow_books' table.
 	public static int delete_borrow(Borrow borrow) throws SQLException {
 		// SQL query to delete a record from the 'user_borrow_books' table.
 		sql = "DELETE FROM user_borrow_books WHERE book_id=?";
@@ -515,6 +531,5 @@ public class Database {
 		// Return the result of the delete query.
 		return result;
 	}
-
 
 }

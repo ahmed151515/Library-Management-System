@@ -2,7 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package library.management.system;
+package library.management.system.GUI;
+
+import library.management.system.Database;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -67,23 +69,26 @@ public class User_gui extends javax.swing.JPanel {
 		GUI.frame.add(jScrollPane1, BorderLayout.CENTER);
 
 
-		ResultSet resultSet = Database.select_stmt("*", "books");
+		ResultSet rs = Database.select_stmt("*", "books");
 
-		while (resultSet.next()) {
-			String categories = Database.getBookCategories(resultSet.getInt("book_ID"));
+		while (rs.next()) {
+			String categories = Database.getBookCategories(rs.getInt("book_ID"));
 			Object[] row = {
-					resultSet.getInt("book_ID")
-					, resultSet.getString("book_name")
-					, resultSet.getInt("num_page")
-					, resultSet.getString("book_descnbtion")
-					, resultSet.getString("book_author")
-					, resultSet.getBoolean("is_translator")
-					, resultSet.getInt("admin_ID")
+					rs.getInt("book_ID")
+					, rs.getString("book_name")
+					, rs.getInt("num_page")
+					, rs.getString("book_descnbtion")
+					, rs.getString("book_author")
+					, rs.getBoolean("is_translator")
+					, rs.getInt("admin_ID")
 					, categories
 			};
 
 			model.addRow(row);
 		}
+		rs.close();
+		Database.close_stmt();
+
 		jScrollPane1.setViewportView(jTable1);
 		BorrowBook.setBackground(new java.awt.Color(10, 20, 86));
 		BorrowBook.setText("Borrow Book");
