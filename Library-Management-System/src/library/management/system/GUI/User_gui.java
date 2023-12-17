@@ -4,6 +4,7 @@
  */
 package library.management.system.GUI;
 
+import library.management.system.Book;
 import library.management.system.Database;
 
 import javax.swing.*;
@@ -72,7 +73,7 @@ public class User_gui extends javax.swing.JPanel {
 		ResultSet rs = Database.select_stmt("*", "books");
 
 		while (rs.next()) {
-			String categories = Database.getBookCategories(rs.getInt("book_ID"));
+			String categories = Book.getBookCategories(rs.getInt("book_ID"));
 			Object[] row = {
 					rs.getInt("book_ID")
 					, rs.getString("book_name")

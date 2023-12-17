@@ -23,7 +23,7 @@ public class LibraryManagementSystem {
      */
     public static void main(String[] args) throws SQLException, IOException {
 
-        // new GUI();
+         new GUI();
         
     }
 

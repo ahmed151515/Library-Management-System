@@ -20,8 +20,8 @@ public class GUI {
 
         cardPanel.add(loginPanel, "LoginPanel");
         cardPanel.add(userGui, "userGui");
-        // cardPanel.add(adminGui, "adminGui");
-        frame.add(cardPanel); 
+         cardPanel.add(adminGui, "adminGui");
+        frame.add(cardPanel);
         cardLayout.show(cardPanel, "LoginPanel");
         frame.pack();
         frame.setLocationRelativeTo(null);
