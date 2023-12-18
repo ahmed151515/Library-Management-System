@@ -27,46 +27,46 @@ public class NAdminGui extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollBar1 = new javax.swing.JScrollBar();
-        jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        PanelAdd_Edit_book = new javax.swing.JPanel();
+        EditBookButton = new javax.swing.JButton();
+        AddBookButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        BookTable = new javax.swing.JTable();
 
-        jButton1.setBackground(new java.awt.Color(20, 100, 10));
-        jButton1.setText("Edit book");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        EditBookButton.setBackground(new java.awt.Color(20, 100, 10));
+        EditBookButton.setText("Edit book");
+        EditBookButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                EditBookButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(100, 20, 10));
-        jButton2.setText("Add book");
+        AddBookButton.setBackground(new java.awt.Color(100, 20, 10));
+        AddBookButton.setText("Add book");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout PanelAdd_Edit_bookLayout = new javax.swing.GroupLayout(PanelAdd_Edit_book);
+        PanelAdd_Edit_book.setLayout(PanelAdd_Edit_bookLayout);
+        PanelAdd_Edit_bookLayout.setHorizontalGroup(
+            PanelAdd_Edit_bookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelAdd_Edit_bookLayout.createSequentialGroup()
                 .addGap(322, 322, 322)
-                .addComponent(jButton2)
+                .addComponent(AddBookButton)
                 .addGap(246, 246, 246)
-                .addComponent(jButton1)
+                .addComponent(EditBookButton)
                 .addContainerGap(320, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        PanelAdd_Edit_bookLayout.setVerticalGroup(
+            PanelAdd_Edit_bookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelAdd_Edit_bookLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
+                .addGroup(PanelAdd_Edit_bookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AddBookButton)
+                    .addComponent(EditBookButton))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
-        jTable1.setForeground(new java.awt.Color(70, 73, 75));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        BookTable.setForeground(new java.awt.Color(70, 73, 75));
+        BookTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -77,13 +77,13 @@ public class NAdminGui extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(BookTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(PanelAdd_Edit_book, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScrollPane1)
         );
         layout.setVerticalGroup(
@@ -91,21 +91,21 @@ public class NAdminGui extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 524, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(PanelAdd_Edit_book, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void EditBookButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditBookButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_EditBookButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton AddBookButton;
+    private javax.swing.JTable BookTable;
+    private javax.swing.JButton EditBookButton;
+    private javax.swing.JPanel PanelAdd_Edit_book;
     private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
