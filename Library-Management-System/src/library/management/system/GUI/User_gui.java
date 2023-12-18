@@ -67,7 +67,7 @@ public class User_gui extends javax.swing.JPanel {
 		DefaultTableModel model = new DefaultTableModel(columns, 0);
 		jTable1 = new JTable(model);
 		jScrollPane1 = new JScrollPane(jTable1);
-		GUI.frame.add(jScrollPane1, BorderLayout.CENTER);
+//		GUI.frame.add(jScrollPane1, BorderLayout.CENTER);
 
 
 		ResultSet rs = Database.select_stmt("*", "books");

@@ -4,6 +4,12 @@
  */
 package library.management.system.GUI;
 
+import library.management.system.Book;
+import library.management.system.Database;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  *
  * @author Ahmed
@@ -13,7 +19,7 @@ public class AddBook extends javax.swing.JPanel {
     /**
      * Creates new form AddBook
      */
-    public AddBook() {
+    public AddBook() throws SQLException {
         initComponents();
     }
 
@@ -24,7 +30,7 @@ public class AddBook extends javax.swing.JPanel {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents() throws SQLException {
 
         TextFieldBookName = new javax.swing.JTextField();
         TextFieldBookAuthor = new javax.swing.JTextField();
@@ -39,6 +45,7 @@ public class AddBook extends javax.swing.JPanel {
         LabelBookDesc = new javax.swing.JLabel();
 
         setForeground(new java.awt.Color(60, 63, 65));
+
 
         LabelBookName.setText("Book Name");
 
@@ -116,6 +123,22 @@ public class AddBook extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_TextFieldBookDescActionPerformed
 
+	public static void setData(int book_ID) throws SQLException {
+		ResultSet rs = Database.select_stmt("*", "books", "book_Id = " + book_ID);
+		if (rs.next()) {
+			TextFieldBookName.setText(rs.getString("book_name"));
+			TextFieldBookCategory.setText(Book.getBookCategories(book_ID));
+			TextFieldBookDesc.setText(rs.getString("book_descnbtion"));
+			TextFieldBookPages.setText(rs.getString("num_page"));
+			TextFieldBookAuthor.setText(rs.getString("book_author"));
+		}
+		rs.close();
+		Database.close_stmt();
+	}
+    public static void supmit(int book_ID) throws SQLException {
+
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LabelBookAuthor;
@@ -124,10 +147,10 @@ public class AddBook extends javax.swing.JPanel {
     private javax.swing.JLabel LabelBookName;
     private javax.swing.JLabel LabelBookPages;
     private javax.swing.JLabel LabelEditPage;
-    private javax.swing.JTextField TextFieldBookAuthor;
-    private javax.swing.JTextField TextFieldBookCategory;
-    private javax.swing.JTextField TextFieldBookDesc;
-    private javax.swing.JTextField TextFieldBookName;
-    private javax.swing.JTextField TextFieldBookPages;
+    private static javax.swing.JTextField TextFieldBookAuthor;
+    private static javax.swing.JTextField TextFieldBookCategory;
+    private static javax.swing.JTextField TextFieldBookDesc;
+    private static javax.swing.JTextField TextFieldBookName;
+    private static javax.swing.JTextField TextFieldBookPages;
     // End of variables declaration//GEN-END:variables
 }

@@ -73,7 +73,7 @@ public class Admin_gui extends javax.swing.JFrame {
         DefaultTableModel model = new DefaultTableModel(columns, 0);
         BookTableAdmin = new JTable(model);
         jScrollPane1 = new JScrollPane(BookTableAdmin);
-        GUI.frame.add(jScrollPane1, BorderLayout.CENTER);
+//        GUI.frame.add(jScrollPane1, BorderLayout.CENTER);
 
         ResultSet rs = Database.select_stmt("*", "books");
 

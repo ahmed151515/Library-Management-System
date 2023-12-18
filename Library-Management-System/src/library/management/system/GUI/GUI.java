@@ -5,24 +5,30 @@ import java.awt.*;
 import java.sql.SQLException;
 
 public class GUI {
+
     static JFrame frame = new JFrame("Library Management System");
     static CardLayout cardLayout;
     static JPanel cardPanel;
 
     public GUI() throws SQLException {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        cardLayout = new CardLayout();
+        frame.setLayout(cardLayout);
 
         NLogin loginPanel = new NLogin();
         User_gui userGui = new User_gui();
-        Admin_gui adminGui = new Admin_gui();
-        cardLayout = new CardLayout();
-        cardPanel = new JPanel(cardLayout);
+        NAdminGui nAdminGui = new NAdminGui();
+        EnterBookId enterBookId = new EnterBookId();
+        AddBook addBook = new AddBook();
 
-        cardPanel.add(loginPanel, "LoginPanel");
-        cardPanel.add(userGui, "userGui");
-         cardPanel.add(adminGui, "adminGui");
-        frame.add(cardPanel);
-        cardLayout.show(cardPanel, "LoginPanel");
+
+        frame.add(loginPanel, "LoginPanel");
+        frame.add(userGui, "userGui");
+        frame.add(nAdminGui, "nAdminGui");
+        frame.add(enterBookId, "enterBookId");
+        frame.add(addBook, "addBook");
+
+        cardLayout.show(frame.getContentPane(), "LoginPanel");
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
