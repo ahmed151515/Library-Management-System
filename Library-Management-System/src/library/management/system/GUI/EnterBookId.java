@@ -10,6 +10,8 @@ package library.management.system.GUI;
  */
 public class EnterBookId extends javax.swing.JPanel {
 
+    protected String book_id;
+
     /**
      * Creates new form EnterBookId
      */

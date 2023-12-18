@@ -4,6 +4,7 @@
  */
 package library.management.system.GUI;
 import library.management.system.Database;
+import library.management.system.User;
 
 import javax.swing.*;
 import java.sql.ResultSet;
@@ -110,7 +111,7 @@ public class NLogin extends javax.swing.JPanel {
         String password = new String(passwordChars);
 
 
-	    if (Database.is_user(userId,password))
+	    if (User.is_user(userId,password))
         {
 
             GUI.cardLayout.show(GUI.cardPanel, "userGui");
