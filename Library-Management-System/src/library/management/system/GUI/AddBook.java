@@ -9,13 +9,16 @@ import library.management.system.Database;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JButton;
 
 /**
  *
  * @author Ahmed
  */
 public class AddBook extends javax.swing.JPanel {
-
+    
+    
+    
     /**
      * Creates new form AddBook
      */
@@ -30,7 +33,7 @@ public class AddBook extends javax.swing.JPanel {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() throws SQLException {
+    private void initComponents() {
 
         TextFieldBookName = new javax.swing.JTextField();
         TextFieldBookAuthor = new javax.swing.JTextField();
@@ -43,9 +46,9 @@ public class AddBook extends javax.swing.JPanel {
         LabelEditPage = new javax.swing.JLabel();
         TextFieldBookDesc = new javax.swing.JTextField();
         LabelBookDesc = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setForeground(new java.awt.Color(60, 63, 65));
-
 
         LabelBookName.setText("Book Name");
 
@@ -66,34 +69,49 @@ public class AddBook extends javax.swing.JPanel {
 
         LabelBookDesc.setText("Description");
 
+        jButton1.setText("<<<");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(348, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(LabelBookName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(TextFieldBookName)
-                            .addComponent(TextFieldBookAuthor, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
-                            .addComponent(TextFieldBookPages, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
-                            .addComponent(TextFieldBookCategory, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
-                            .addComponent(LabelBookAuthor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(LabelBookPages, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(LabelBookCategory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(TextFieldBookDesc, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
-                            .addComponent(LabelBookDesc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(341, 341, 341))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(LabelEditPage)
-                        .addGap(444, 444, 444))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 342, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(LabelBookName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(TextFieldBookName)
+                                    .addComponent(TextFieldBookAuthor, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
+                                    .addComponent(TextFieldBookPages, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
+                                    .addComponent(TextFieldBookCategory, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
+                                    .addComponent(LabelBookAuthor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(LabelBookPages, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(LabelBookCategory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(TextFieldBookDesc, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
+                                    .addComponent(LabelBookDesc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(341, 341, 341))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(LabelEditPage)
+                                .addGap(444, 444, 444))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(69, 69, 69)
+                .addContainerGap()
+                .addComponent(jButton1)
+                .addGap(40, 40, 40)
                 .addComponent(LabelEditPage)
                 .addGap(58, 58, 58)
                 .addComponent(LabelBookName)
@@ -121,7 +139,12 @@ public class AddBook extends javax.swing.JPanel {
 
     private void TextFieldBookDescActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldBookDescActionPerformed
         // TODO add your handling code here:
+        GUI.cardLayout.previous(GUI.frame.getContentPane());
     }//GEN-LAST:event_TextFieldBookDescActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 	public static void setData(int book_ID) throws SQLException {
 		ResultSet rs = Database.select_stmt("*", "books", "book_Id = " + book_ID);
@@ -147,10 +170,11 @@ public class AddBook extends javax.swing.JPanel {
     private javax.swing.JLabel LabelBookName;
     private javax.swing.JLabel LabelBookPages;
     private javax.swing.JLabel LabelEditPage;
-    private static javax.swing.JTextField TextFieldBookAuthor;
-    private static javax.swing.JTextField TextFieldBookCategory;
-    private static javax.swing.JTextField TextFieldBookDesc;
-    private static javax.swing.JTextField TextFieldBookName;
-    private static javax.swing.JTextField TextFieldBookPages;
+    private javax.swing.JTextField TextFieldBookAuthor;
+    private javax.swing.JTextField TextFieldBookCategory;
+    private javax.swing.JTextField TextFieldBookDesc;
+    private javax.swing.JTextField TextFieldBookName;
+    private javax.swing.JTextField TextFieldBookPages;
+    private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }

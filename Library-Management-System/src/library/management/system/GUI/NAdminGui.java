@@ -144,7 +144,7 @@ public class NAdminGui extends javax.swing.JPanel {
 								.addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
 		);
 	}// </editor-fold>//GEN-END:initComponents
-
+        
 	private void editbook(java.awt.event.ActionEvent evt) throws SQLException {//GEN-FIRST:event_jButton1ActionPerformed
 		int book_id = Integer.parseInt(JOptionPane.showInputDialog("book ID: "));
 

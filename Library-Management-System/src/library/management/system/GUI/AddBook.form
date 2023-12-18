@@ -22,26 +22,35 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace pref="348" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="LabelBookName" alignment="0" max="32767" attributes="0"/>
-                          <Component id="TextFieldBookName" alignment="0" max="32767" attributes="0"/>
-                          <Component id="TextFieldBookAuthor" alignment="0" pref="361" max="32767" attributes="0"/>
-                          <Component id="TextFieldBookPages" alignment="0" pref="361" max="32767" attributes="0"/>
-                          <Component id="TextFieldBookCategory" alignment="0" pref="361" max="32767" attributes="0"/>
-                          <Component id="LabelBookAuthor" alignment="0" max="32767" attributes="0"/>
-                          <Component id="LabelBookPages" alignment="0" max="32767" attributes="0"/>
-                          <Component id="LabelBookCategory" alignment="0" max="32767" attributes="0"/>
-                          <Component id="TextFieldBookDesc" alignment="0" pref="361" max="32767" attributes="0"/>
-                          <Component id="LabelBookDesc" alignment="0" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="0" pref="342" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="LabelBookName" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="TextFieldBookName" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="TextFieldBookAuthor" alignment="0" pref="361" max="32767" attributes="0"/>
+                                  <Component id="TextFieldBookPages" alignment="0" pref="361" max="32767" attributes="0"/>
+                                  <Component id="TextFieldBookCategory" alignment="0" pref="361" max="32767" attributes="0"/>
+                                  <Component id="LabelBookAuthor" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="LabelBookPages" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="LabelBookCategory" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="TextFieldBookDesc" alignment="0" pref="361" max="32767" attributes="0"/>
+                                  <Component id="LabelBookDesc" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="341" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="LabelEditPage" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="444" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="341" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="LabelEditPage" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="444" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -50,7 +59,9 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
               <Component id="LabelEditPage" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
               <Component id="LabelBookName" min="-2" max="-2" attributes="0"/>
@@ -123,6 +134,14 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Description"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&lt;&lt;&lt;"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
