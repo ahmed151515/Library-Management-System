@@ -18,14 +18,13 @@ public class GUI {
         NLogin loginPanel = new NLogin();
         User_gui userGui = new User_gui();
         NAdminGui nAdminGui = new NAdminGui();
-        EnterBookId enterBookId = new EnterBookId();
+
         AddBook addBook = new AddBook();
 
 
         frame.add(loginPanel, "LoginPanel");
         frame.add(userGui, "userGui");
         frame.add(nAdminGui, "nAdminGui");
-        frame.add(enterBookId, "enterBookId");
         frame.add(addBook, "addBook");
 
         cardLayout.show(frame.getContentPane(), "LoginPanel");

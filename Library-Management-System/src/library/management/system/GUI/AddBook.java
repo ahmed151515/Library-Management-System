@@ -139,11 +139,11 @@ public class AddBook extends javax.swing.JPanel {
 
     private void TextFieldBookDescActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldBookDescActionPerformed
         // TODO add your handling code here:
-        GUI.cardLayout.previous(GUI.frame.getContentPane());
+
     }//GEN-LAST:event_TextFieldBookDescActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        GUI.cardLayout.previous(GUI.frame.getContentPane());
     }//GEN-LAST:event_jButton1ActionPerformed
 
 	public static void setData(int book_ID) throws SQLException {
@@ -170,11 +170,11 @@ public class AddBook extends javax.swing.JPanel {
     private javax.swing.JLabel LabelBookName;
     private javax.swing.JLabel LabelBookPages;
     private javax.swing.JLabel LabelEditPage;
-    private javax.swing.JTextField TextFieldBookAuthor;
-    private javax.swing.JTextField TextFieldBookCategory;
-    private javax.swing.JTextField TextFieldBookDesc;
-    private javax.swing.JTextField TextFieldBookName;
-    private javax.swing.JTextField TextFieldBookPages;
+    private static javax.swing.JTextField TextFieldBookAuthor;
+    private static javax.swing.JTextField TextFieldBookCategory;
+    private static javax.swing.JTextField TextFieldBookDesc;
+    private static javax.swing.JTextField TextFieldBookName;
+    private static javax.swing.JTextField TextFieldBookPages;
     private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }
