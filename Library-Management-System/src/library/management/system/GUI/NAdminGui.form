@@ -41,11 +41,13 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace min="322" pref="322" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                  <Component id="ButtonBack" min="-2" pref="56" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="240" max="-2" attributes="0"/>
                   <Component id="AddBookButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="246" max="-2" attributes="0"/>
                   <Component id="EditBookButton" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="320" max="32767" attributes="0"/>
+                  <EmptySpace pref="323" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -56,6 +58,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="AddBookButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="EditBookButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="ButtonBack" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="27" max="32767" attributes="0"/>
               </Group>
@@ -81,6 +84,14 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Add book"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="ButtonBack">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&lt;&lt;&lt;"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ButtonBackActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

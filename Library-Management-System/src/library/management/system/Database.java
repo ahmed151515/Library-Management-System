@@ -12,9 +12,9 @@ import java.sql.*;
 public abstract class Database {
 	// Database connection details
 	private static final String url = "jdbc:sqlserver://"
-			+ "DESKTOP-BBEFQFU;" // server name or IP and port
+			+ "POWER;" // server name or IP and port
 			+ "Database=Library_Management_System;" // database name
-			// + "IntegratedSecurity=true;" // if you want use Windows Authentication
+			 + "IntegratedSecurity=true;" // if you want use Windows Authentication
 			+ "encrypt=true;"
 			+ "trustServerCertificate=true";
 	private static final String user = "admin";
@@ -27,14 +27,14 @@ public abstract class Database {
 	protected static PreparedStatement stmt;
 	protected static String sql;
 
-	/**
+	/*
 	 * Static block to establish a connection to the database when the class is
 	 * loaded.
 	 * Throws a RuntimeException if a connection cannot be established.
 	 */
 	static {
 		try {
-			con = DriverManager.getConnection(url, user, password);
+			con = DriverManager.getConnection(url);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
