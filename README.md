@@ -6,12 +6,14 @@ made by
 ahmed arafa (ahmed151515)
 
 role
-    handel database class and database
+    handel database class and link API 
 
 ahmed Mohammed (arrm33)
 
 role
-handel GUI
+    handel package GUI
+
+The rest was done together
 
 # ERD
 ![ERD](https://github.com/ahmed151515/Library-Management-System/blob/master/image/ERD.png)

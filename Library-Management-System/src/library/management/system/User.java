@@ -80,6 +80,8 @@ public class User extends Database {
 		} catch (Exception e) {
 
 			System.out.println(e);
+		} finally {
+			stmt.close();
 		}
 
 		return false;
@@ -105,6 +107,8 @@ public class User extends Database {
 			// Handle any exceptions, close the statement, and print the error message.
 			stmt.close();
 			System.out.println(e);
+		} finally {
+			stmt.close();
 		}
 
 		// Return the result of the execution.
@@ -135,6 +139,8 @@ public class User extends Database {
 			// Handle any exceptions, close the statement, and print the error message.
 			stmt.close();
 			System.out.println(e);
+		} finally {
+			stmt.close();
 		}
 
 		// Return the result of the execution.
@@ -162,6 +168,8 @@ public class User extends Database {
 			// Handle any exceptions, close the statement, and print the error message.
 			stmt.close();
 			System.out.println(e);
+		} finally {
+			stmt.close();
 		}
 
 		// Return the result of the execution.

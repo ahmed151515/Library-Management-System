@@ -67,6 +67,7 @@ public class Borrow extends Database {
 	// handle insert Statement to borrow
 	// This function inserts a record of a user borrowing a book into the
 	// 'user_borrow_books' table.
+	@Override
 	public  int insert() throws SQLException {
 		// SQL query to insert values into the 'user_borrow_books' table.
 		sql = "INSERT INTO user_borrow_books VALUES (?,?,?,?);";
@@ -91,6 +92,8 @@ public class Borrow extends Database {
 			// Handle exceptions, close the statement, and print the error.
 			stmt.close();
 			System.out.println(e);
+		} finally {
+			stmt.close();
 		}
 
 		// Return the result of the insert query.
@@ -99,6 +102,7 @@ public class Borrow extends Database {
 
 	// This function updates a record of a user borrowing a book in the
 	// 'user_borrow_books' table.
+	@Override
 	public  int update() throws SQLException {
 		// SQL query to update values in the 'user_borrow_books' table.
 		sql = "UPDATE user_borrow_books SET "
@@ -127,6 +131,8 @@ public class Borrow extends Database {
 			// Handle exceptions, close the statement, and print the error.
 			stmt.close();
 			System.out.println(e);
+		} finally {
+			stmt.close();
 		}
 
 		// Return the result of the update query.
@@ -135,6 +141,7 @@ public class Borrow extends Database {
 
 	// This function deletes a record of a user borrowing a book from the
 	// 'user_borrow_books' table.
+	@Override
 	public  int delete() throws SQLException {
 		// SQL query to delete a record from the 'user_borrow_books' table.
 		sql = "DELETE FROM user_borrow_books WHERE book_id=?";
@@ -153,6 +160,8 @@ public class Borrow extends Database {
 			// Handle exceptions, close the statement, and print the error.
 			stmt.close();
 			System.out.println(e);
+		} finally {
+			stmt.close();
 		}
 
 		// Return the result of the delete query.

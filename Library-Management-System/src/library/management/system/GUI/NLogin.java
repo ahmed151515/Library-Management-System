@@ -16,7 +16,16 @@ import java.sql.SQLException;
  * @author Ahmed
  */
 public class NLogin extends javax.swing.JPanel {
+
+	private JLabel LoginLabel;
+	private JButton loginButton;
+	private JLabel passwordLabel;
+	private JPasswordField passwordTextField;
+	private JLabel userIdLabel;
+	private JTextField userIdTextField;
+	// End of variables declaration//GEN-END:variables
 	static int user_id;
+
 
 	/**
 	 * Creates new form NLogin
@@ -112,7 +121,7 @@ public class NLogin extends javax.swing.JPanel {
 		char[] passwordChars = passwordTextField.getPassword();
 		String password = new String(passwordChars);
 
-
+		user_id = Integer.parseInt(userId);
 		if (User.is_user(userId, password)) {
 
 			GUI.cardLayout.show(GUI.frame.getContentPane(), "userGui");
@@ -131,13 +140,7 @@ public class NLogin extends javax.swing.JPanel {
 
 
 	// Variables declaration - do not modify//GEN-BEGIN:variables
-	private javax.swing.JLabel LoginLabel;
-	private javax.swing.JButton loginButton;
-	private javax.swing.JLabel passwordLabel;
-	private javax.swing.JPasswordField passwordTextField;
-	private javax.swing.JLabel userIdLabel;
-	private javax.swing.JTextField userIdTextField;
-	// End of variables declaration//GEN-END:variables
+
 
 
 }

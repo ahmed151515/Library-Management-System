@@ -12,7 +12,7 @@ import java.sql.*;
 public abstract class Database {
 	// Database connection details
 	private static final String url = "jdbc:sqlserver://"
-			+ "POWER;" // server name or IP and port
+			+ "DESKTOP-BBEFQFU;" // server name or IP and port (POWER)  (DESKTOP-BBEFQFU)
 			+ "Database=Library_Management_System;" // database name
 			 + "IntegratedSecurity=true;" // if you want use Windows Authentication
 			+ "encrypt=true;"
