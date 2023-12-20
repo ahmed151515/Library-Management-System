@@ -115,7 +115,7 @@ public class NLogin extends javax.swing.JPanel {
 	}// </editor-fold>//GEN-END:initComponents
 
 	private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) throws SQLException {//GEN-FIRST:event_loginButtonActionPerformed
-		// TODO add your handling code here:
+
 		String userId = userIdTextField.getText();
 
 		char[] passwordChars = passwordTextField.getPassword();

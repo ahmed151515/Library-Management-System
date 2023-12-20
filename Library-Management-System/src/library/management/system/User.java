@@ -25,7 +25,6 @@ public class User extends Database {
 		this.user_ID = 0;
 		this.password = null;
 		this.email = null;
-
 	}
 
 	public User(String password, String email) {

@@ -1,5 +1,5 @@
 use Library_Management_System;
-
+-- create tables
 create table admins
 (
 	admin_ID int primary key IDENTITY(1,1),
@@ -17,7 +17,7 @@ create table users
 create table books
 (
 	book_ID         int primary key,
-	book_name       varchar(30) not null,
+	book_name       varchar(30) not null unique,
 	num_page        int,
 	book_descnbtion varchar(150),
 	book_author     varchar(30),
@@ -29,7 +29,7 @@ create table book_categorise
 (
 	book_ID int  foreign Key REFERENCES  books(book_ID),
 	category varchar(30),
-	category_index int not null;
+	category_index int not null
 	
 );
 
@@ -40,4 +40,10 @@ create table user_borrow_books
 	strart_date date not null,
 	end_date date not null,
 );
+
+
+--  index
+create index 
+
+
 

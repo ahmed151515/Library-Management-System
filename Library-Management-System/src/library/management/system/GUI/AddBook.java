@@ -209,6 +209,7 @@ public class AddBook extends javax.swing.JPanel {
 			if (result > 0) {
 				JOptionPane.showMessageDialog(GUI.frame,"The book has been successfully added");
 				NAdminGui.refresh();
+				User_gui.refresh();
 			} else {
 				JOptionPane.showMessageDialog(GUI.frame,"Failed to add the book");
 

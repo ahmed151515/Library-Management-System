@@ -64,7 +64,7 @@ public class User_gui extends javax.swing.JPanel {
 				, "Admin ID"
 				, "categorise"
 		};
-		DefaultTableModel model = new DefaultTableModel(columns, 0);
+		 model = new DefaultTableModel(columns, 0);
 		jTable1 = new JTable(model);
 		jScrollPane1 = new JScrollPane(jTable1);
 //		GUI.frame.add(jScrollPane1, BorderLayout.CENTER);
@@ -113,13 +113,89 @@ public class User_gui extends javax.swing.JPanel {
 	private void BorrowBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrowBookActionPerformed
 		// TODO add your handling code here:
 	}//GEN-LAST:event_BorrowBookActionPerformed
+	public static void refresh() throws SQLException {
+		ResultSet rs;
+		if (model.getRowCount() > 0) {
+			int max_book_id = Integer.parseInt(
+					model.getValueAt(model.getRowCount() - 1
+							, model.findColumn("Book ID")).toString()
+			);
+			rs = Database.select_stmt("*", "books", "book_id > " + max_book_id);
+		}else {
 
+			rs = Database.select_stmt("*", "books");
+		}
+		// must handle delete row
+		while (rs.next()) {
+			String categories = Book.getBookCategories(rs.getInt("book_ID"));
+			Object[] row = {
+					rs.getInt("book_ID")
+					, rs.getString("book_name")
+					, rs.getInt("num_page")
+					, rs.getString("book_descnbtion")
+					, rs.getString("book_author")
+					, rs.getBoolean("is_translator")
+					, rs.getInt("admin_ID")
+					, categories
+			};
+
+			model.addRow(row);
+		}
+		rs.close();
+		Database.close_stmt();
+
+	}
+
+	public static void refresh(int book_id) throws SQLException {
+
+
+		ResultSet rs = Database.select_stmt("*", "books", "book_id = " + book_id);
+
+		if (rs.next()) {
+			String categories = Book.getBookCategories(rs.getInt("book_ID"));
+			Object[] row = {
+					rs.getInt("book_ID")
+					, rs.getString("book_name")
+					, rs.getInt("num_page")
+					, rs.getString("book_descnbtion")
+					, rs.getString("book_author")
+					, rs.getBoolean("is_translator")
+					, rs.getInt("admin_ID")
+					, categories
+			};
+			int rowIndex = findRowIndex(book_id);
+
+			if (rowIndex != -1) {
+
+				for (int i = 0; i < model.getColumnCount(); i++) {
+					model.setValueAt(row[i], rowIndex, i);
+				}
+			}
+
+
+		}
+		rs.close();
+		Database.close_stmt();
+
+	}
+
+	private static int findRowIndex(int book_id) {
+
+
+		for (int i = 0; i < model.getRowCount(); i++) {
+			if ((int) model.getValueAt(i, 0) == book_id) {
+				return i;
+			}
+		}
+		return -1;
+	}
 
 	// Variables declaration - do not modify//GEN-BEGIN:variables
 	private javax.swing.JButton BorrowBook;
 	private javax.swing.JPanel jPanel1;
 	private javax.swing.JScrollPane jScrollPane1;
 	private javax.swing.JTable jTable1;
+	private static DefaultTableModel model;
 
 	// End of variables declaration//GEN-END:variables
 }

@@ -226,6 +226,7 @@ public class EditBook extends javax.swing.JPanel {
 			if (result > 0) {
 				JOptionPane.showMessageDialog(GUI.frame, "The book has been successfully added");
 				NAdminGui.refresh(book_id);
+				User_gui.refresh(book_id);
 			} else {
 				JOptionPane.showMessageDialog(GUI.frame, "Failed to add the book");
 
