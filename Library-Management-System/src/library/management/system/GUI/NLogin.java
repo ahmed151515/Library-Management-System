@@ -10,6 +10,7 @@ import library.management.system.Database;
 import library.management.system.User;
 
 import javax.swing.*;
+import java.awt.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -81,7 +82,7 @@ public class NLogin extends javax.swing.JPanel {
         gridBagConstraints.gridy = 2;
         gridBagConstraints.gridwidth = 5;
         gridBagConstraints.ipadx = 347;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.anchor = GridBagConstraints.CENTER;
         gridBagConstraints.insets = new java.awt.Insets(18, 328, 0, 311);
         add(UserIdTextField, gridBagConstraints);
 
@@ -89,7 +90,7 @@ public class NLogin extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.anchor = GridBagConstraints.CENTER;
         gridBagConstraints.insets = new java.awt.Insets(92, 328, 0, 0);
         add(UserIdLabel, gridBagConstraints);
 
