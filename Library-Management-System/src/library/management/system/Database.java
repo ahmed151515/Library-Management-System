@@ -22,7 +22,7 @@ public abstract class Database {
 	private static final String password = "76549#$gcg";
 
 	// Database connection object
-	protected static java.sql.Connection con;
+	protected static Connection con;
 
 	// PreparedStatement and SQL statement for queries
 	protected static PreparedStatement stmt;
