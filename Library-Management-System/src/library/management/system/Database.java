@@ -11,14 +11,15 @@ import java.sql.*;
  */
 public abstract class Database {
 	// Database connection details
-	private static final String url = "jdbc:sqlserver://"
-			+ "DESKTOP-BBEFQFU;" // server name or IP and port (POWER)  (DESKTOP-BBEFQFU)
-			+ "Database=Library_Management_System;" // database name
-			 + "IntegratedSecurity=true;" // if you want use Windows Authentication
+	private static final String url =
+			"jdbc:sqlserver://"
+			+ "SQL8006.site4now.net:1433;" // server name or IP and port (POWER)  (DESKTOP-BBEFQFU)
+			+ "DatabaseName=db_aa3272_ahmed1515;" // database name
+//			 + "IntegratedSecurity=true;" // if you want use Windows Authentication
 			+ "encrypt=true;"
 			+ "trustServerCertificate=true";
-	private static final String user = "admin";
-	private static final String password = "admin";
+	private static final String user = "db_aa3272_ahmed1515_admin";
+	private static final String password = "76549#$gcg";
 
 	// Database connection object
 	protected static Connection con;
@@ -34,7 +35,7 @@ public abstract class Database {
 	 */
 	static {
 		try {
-			con = DriverManager.getConnection(url);
+			con = DriverManager.getConnection(url, user, password);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
