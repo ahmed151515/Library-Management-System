@@ -192,14 +192,18 @@ public class NAdminGui extends javax.swing.JPanel {
 	}
 
 	public static void refresh() throws SQLException {
+		ResultSet rs;
+		if (model.getRowCount() > 0) {
+			int max_book_id = Integer.parseInt(
+					model.getValueAt(model.getRowCount() - 1
+							, model.findColumn("Book ID")).toString()
+			);
+			 rs = Database.select_stmt("*", "books", "book_id > " + max_book_id);
+		}else {
 
-		int max_book_id = Integer.parseInt(
-				model.getValueAt(model.getRowCount() - 1
-						, model.findColumn("Book ID")).toString()
-		);
-
-		ResultSet rs = Database.select_stmt("*", "books", "book_id > " + max_book_id);
-
+			 rs = Database.select_stmt("*", "books");
+		}
+		// must handle delete row
 		while (rs.next()) {
 			String categories = Book.getBookCategories(rs.getInt("book_ID"));
 			Object[] row = {

@@ -28,7 +28,9 @@ create table books
 create table book_categorise
 (
 	book_ID int  foreign Key REFERENCES  books(book_ID),
-	category varchar(30)
+	category varchar(30),
+	category_index int not null;
+	
 );
 
 create table user_borrow_books
@@ -38,3 +40,4 @@ create table user_borrow_books
 	strart_date date not null,
 	end_date date not null,
 );
+
