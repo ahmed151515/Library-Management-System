@@ -126,25 +126,25 @@ public class NAdminGui extends javax.swing.JPanel {
 		jScrollPane1 = new JScrollPane(BookTable);
 
 
-		ResultSet rs = Database.select_stmt("*", "books");
-
-		while (rs.next()) {
-			String categories = Book.getBookCategories(rs.getInt("book_ID"));
-			Object[] row = {
-					rs.getInt("book_ID")
-					, rs.getString("book_name")
-					, rs.getInt("num_page")
-					, rs.getString("book_descnbtion")
-					, rs.getString("book_author")
-					, rs.getBoolean("is_translator")
-					, rs.getInt("admin_ID")
-					, categories
-			};
-
-			model.addRow(row);
-		}
-		rs.close();
-		Database.close_stmt();
+//		ResultSet rs = Database.select_stmt("*", "books");
+//
+//		while (rs.next()) {
+//			String categories = Book.getBookCategories(rs.getInt("book_ID"));
+//			Object[] row = {
+//					rs.getInt("book_ID")
+//					, rs.getString("book_name")
+//					, rs.getInt("num_page")
+//					, rs.getString("book_descnbtion")
+//					, rs.getString("book_author")
+//					, rs.getBoolean("is_translator")
+//					, rs.getInt("admin_ID")
+//					, categories
+//			};
+//
+//			model.addRow(row);
+//		}
+//		rs.close();
+//		Database.close_stmt();
 //        jScrollPane1.setViewportView(BookTable);
 
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -266,6 +266,31 @@ public class NAdminGui extends javax.swing.JPanel {
 			}
 		}
 		return -1;
+	}
+
+	public static void getData() throws SQLException {
+
+		ResultSet rs = Database.select_stmt("*", "books");
+
+		// must handle delete row
+		while (rs.next()) {
+			String categories = Book.getBookCategories(rs.getInt("book_ID"));
+			Object[] row = {
+					rs.getInt("book_ID")
+					, rs.getString("book_name")
+					, rs.getInt("num_page")
+					, rs.getString("book_descnbtion")
+					, rs.getString("book_author")
+					, rs.getBoolean("is_translator")
+					, rs.getInt("admin_ID")
+					, categories
+			};
+
+			model.addRow(row);
+		}
+		rs.close();
+		Database.close_stmt();
+
 	}
 
 	// Variables declaration - do not modify//GEN-BEGIN:variables

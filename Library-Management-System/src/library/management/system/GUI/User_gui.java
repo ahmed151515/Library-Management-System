@@ -64,31 +64,31 @@ public class User_gui extends javax.swing.JPanel {
 				, "Admin ID"
 				, "categorise"
 		};
-		 model = new DefaultTableModel(columns, 0);
+		model = new DefaultTableModel(columns, 0);
 		jTable1 = new JTable(model);
 		jScrollPane1 = new JScrollPane(jTable1);
 //		GUI.frame.add(jScrollPane1, BorderLayout.CENTER);
 
 
-		ResultSet rs = Database.select_stmt("*", "books");
-
-		while (rs.next()) {
-			String categories = Book.getBookCategories(rs.getInt("book_ID"));
-			Object[] row = {
-					rs.getInt("book_ID")
-					, rs.getString("book_name")
-					, rs.getInt("num_page")
-					, rs.getString("book_descnbtion")
-					, rs.getString("book_author")
-					, rs.getBoolean("is_translator")
-					, rs.getInt("admin_ID")
-					, categories
-			};
-
-			model.addRow(row);
-		}
-		rs.close();
-		Database.close_stmt();
+//		ResultSet rs = Database.select_stmt("*", "books");
+//
+//		while (rs.next()) {
+//			String categories = Book.getBookCategories(rs.getInt("book_ID"));
+//			Object[] row = {
+//					rs.getInt("book_ID")
+//					, rs.getString("book_name")
+//					, rs.getInt("num_page")
+//					, rs.getString("book_descnbtion")
+//					, rs.getString("book_author")
+//					, rs.getBoolean("is_translator")
+//					, rs.getInt("admin_ID")
+//					, categories
+//			};
+//
+//			model.addRow(row);
+//		}
+//		rs.close();
+//		Database.close_stmt();
 
 		jScrollPane1.setViewportView(jTable1);
 		BorrowBook.setBackground(new java.awt.Color(10, 20, 86));
@@ -113,6 +113,7 @@ public class User_gui extends javax.swing.JPanel {
 	private void BorrowBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrowBookActionPerformed
 		// TODO add your handling code here:
 	}//GEN-LAST:event_BorrowBookActionPerformed
+
 	public static void refresh() throws SQLException {
 		ResultSet rs;
 		if (model.getRowCount() > 0) {
@@ -121,7 +122,7 @@ public class User_gui extends javax.swing.JPanel {
 							, model.findColumn("Book ID")).toString()
 			);
 			rs = Database.select_stmt("*", "books", "book_id > " + max_book_id);
-		}else {
+		} else {
 
 			rs = Database.select_stmt("*", "books");
 		}
@@ -188,6 +189,31 @@ public class User_gui extends javax.swing.JPanel {
 			}
 		}
 		return -1;
+	}
+
+	public static void getData() throws SQLException {
+
+		ResultSet rs = Database.select_stmt("*", "books");
+
+		// must handle delete row
+		while (rs.next()) {
+			String categories = Book.getBookCategories(rs.getInt("book_ID"));
+			Object[] row = {
+					rs.getInt("book_ID")
+					, rs.getString("book_name")
+					, rs.getInt("num_page")
+					, rs.getString("book_descnbtion")
+					, rs.getString("book_author")
+					, rs.getBoolean("is_translator")
+					, rs.getInt("admin_ID")
+					, categories
+			};
+
+			model.addRow(row);
+		}
+		rs.close();
+		Database.close_stmt();
+
 	}
 
 	// Variables declaration - do not modify//GEN-BEGIN:variables

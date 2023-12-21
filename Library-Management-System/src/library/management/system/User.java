@@ -66,7 +66,7 @@ public class User extends Database {
 
 	public static boolean is_user(String id, String password) throws SQLException {
 		String sql = "SELECT * FROM users WHERE user_id=? AND password=?";
-
+		System.out.println(con.isClosed());
 		try (PreparedStatement stmt = con.prepareStatement(sql)) {
 			// Set parameters using PreparedStatement to prevent SQL injection.
 			stmt.setString(1, id);
@@ -79,8 +79,6 @@ public class User extends Database {
 		} catch (Exception e) {
 
 			System.out.println(e);
-		} finally {
-			stmt.close();
 		}
 
 		return false;

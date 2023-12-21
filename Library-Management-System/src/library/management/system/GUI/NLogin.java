@@ -11,6 +11,7 @@ import library.management.system.User;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -71,6 +72,16 @@ public class NLogin extends javax.swing.JPanel {
         gridBagConstraints.anchor = GridBagConstraints.CENTER;
         gridBagConstraints.insets = new java.awt.Insets(18, 328, 0, 311);
         add(PasswordField, gridBagConstraints);
+        SendButton.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+	            try {
+		            loginButtonActionPerformed(e);
+	            } catch (SQLException ex) {
+		            throw new RuntimeException(ex);
+	            }
+            }
+        });
 
         UserIdTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,10 +138,12 @@ public class NLogin extends javax.swing.JPanel {
 
 		user_id = Integer.parseInt(userId);
 		if (User.is_user(userId, password)) {
-
 			GUI.cardLayout.show(GUI.frame.getContentPane(), "userGui");
+            User_gui.getData();
 		} else if (Admin.is_admin(userId, password)) {
 			GUI.cardLayout.show(GUI.frame.getContentPane(), "nAdminGui");
+            NAdminGui.getData();
+
 		} else
 		{
 			JOptionPane.showMessageDialog(null, "user id or password is wrong", "", JOptionPane.WARNING_MESSAGE);

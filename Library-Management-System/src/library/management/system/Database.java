@@ -14,8 +14,8 @@ public abstract class Database {
 	private static final String url =
 			"jdbc:sqlserver://"
 			+ "SQL8006.site4now.net:1433;" // server name or IP and port (POWER)  (DESKTOP-BBEFQFU)
-			+ "DatabaseName=db_aa3272_ahmed1515;" // database name
-//			 + "IntegratedSecurity=true;" // if you want use Windows Authentication
+			+ "Database=db_aa3272_ahmed1515;" // database name
+//			 + "IntegratedSecurity=true;" // if you want to use Windows Authentication
 			+ "encrypt=true;"
 			+ "trustServerCertificate=true";
 	private static final String user = "db_aa3272_ahmed1515_admin";
