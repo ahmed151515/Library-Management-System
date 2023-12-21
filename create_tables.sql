@@ -1,4 +1,4 @@
-use Library_Management_System;
+
 -- create tables
 create table admins
 (
@@ -40,9 +40,26 @@ create table user_borrow_books
 	end_date date not null,
 );
 
-
 --  index
-create index 
+create index idx_borrow
+on user_borrow_books(user_id, book_id);
+
+-- view
+CREATE VIEW Borro_GUI 
+as
+select
+books.book_ID,
+book_name,
+user_borrow_books.user_ID,
+email,
+end_date
+from books  inner join user_borrow_books
+on books.book_ID = user_borrow_books.book_ID 
+inner join users
+on  users.user_ID = user_borrow_books.user_ID;
+go
+
+
 
 
 

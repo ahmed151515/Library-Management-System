@@ -20,6 +20,7 @@ public class GUI {
         NAdminGui nAdminGui = new NAdminGui();
         AddBook addBook = new AddBook();
         EditBook editBook = new EditBook();
+        Borrow_GUI borrowGui = new Borrow_GUI();
 
 
         frame.add(loginPanel, "LoginPanel");
@@ -27,6 +28,8 @@ public class GUI {
         frame.add(nAdminGui, "nAdminGui");
         frame.add(addBook, "addBook");
         frame.add(editBook, "editBook");
+        frame.add(borrowGui, "borrowGui");
+
 
         cardLayout.show(frame.getContentPane(), "LoginPanel");
         frame.pack();
