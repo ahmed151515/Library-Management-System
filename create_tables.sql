@@ -21,13 +21,12 @@ create table books
 	num_page        int,
 	book_descnbtion varchar(150),
 	book_author     varchar(30),
-	is_translator   bit,
 	admin_ID        int  foreign Key REFERENCES  admins(admin_ID)
 	);
 
 create table book_categorise
 (
-	book_ID int  foreign Key REFERENCES  books(book_ID),
+	book_ID int  foreign Key REFERENCES  books(book_ID) on delete CASCADE,
 	category varchar(30),
 	category_index int not null
 );
@@ -35,7 +34,7 @@ create table book_categorise
 create table user_borrow_books
 (
 	user_ID int  foreign Key REFERENCES  users(user_ID),
-	book_ID int  foreign Key REFERENCES  books(book_ID),
+	book_ID int  foreign Key REFERENCES  books(book_ID) on delete CASCADE,
 	strart_date date not null,
 	end_date date not null,
 );
@@ -60,6 +59,13 @@ on  users.user_ID = user_borrow_books.user_ID;
 go
 
 
+insert into admins values ('admin', 'admin@gmail.com');
+insert into users values ('12345', 'user@gmail.com');
+
+
+
+select * from books;
+select * from book_categorise;
 
 
 
