@@ -4,27 +4,23 @@
  */
 package library.management.system;
 
-import library.management.system.GUI.EnterBookId;
+
 import library.management.system.GUI.GUI;
 
 import java.io.IOException;
 import java.sql.SQLException;
 
-import javax.swing.JFrame;
-
 /**
- *
  * @author PC
  */
 public class LibraryManagementSystem {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) throws SQLException, IOException {
+	/**
+	 * @param args the command line arguments
+	 */
+	public static void main(String[] args) throws SQLException, IOException {
 
          new GUI();
-        
-    }
+	}
 
 }

@@ -204,7 +204,7 @@ public class Book extends Database {
 	@Override
 	public int insert() throws SQLException {
 		// SQL query to insert values into the 'books' table.
-		String sql = "INSERT INTO books VALUES (?,?,?,?,?,?,?);";
+		String sql = "INSERT INTO books VALUES (?,?,?,?,?,?);";
 		int result = 0;
 
 		try {
@@ -217,8 +217,7 @@ public class Book extends Database {
 			stmt.setInt(3, getNum_page());
 			stmt.setString(4, getDescribtion());
 			stmt.setString(5, getAuthor_name());
-			stmt.setBoolean(6, isTranslator());
-			stmt.setInt(7, getAdmin_id());
+			stmt.setInt(6, getAdmin_id());
 
 			// Execute the first insert query and store the result.
 			result = stmt.executeUpdate();
@@ -354,8 +353,7 @@ public class Book extends Database {
 				+ " num_page=?," // 2
 				+ " book_descnbtion=?," // 3
 				+ " book_author=?," // 4
-				+ " is_translator=?," // 5
-				+ " admin_ID=?" // 6
+				+ " admin_ID=?" // 5
 				+ " WHERE book_ID=?;"; // 7
 		int result = 0;
 
@@ -368,8 +366,7 @@ public class Book extends Database {
 			stmt.setInt(2, getNum_page());
 			stmt.setString(3, getDescribtion());
 			stmt.setString(4, getAuthor_name());
-			stmt.setBoolean(5, isTranslator());
-			stmt.setInt(6, getAdmin_id());
+			stmt.setInt(5, getAdmin_id());
 			stmt.setInt(7, getBook_id());
 
 			// Execute the update query and store the result.

@@ -60,7 +60,6 @@ public class User_gui extends javax.swing.JPanel {
 				, "Num Page"
 				, "Book Descnbtion"
 				, "Book Author"
-				, "Is Translator"
 				, "Admin ID"
 				, "categorise"
 		};
@@ -70,25 +69,24 @@ public class User_gui extends javax.swing.JPanel {
 //		GUI.frame.add(jScrollPane1, BorderLayout.CENTER);
 
 
-//		ResultSet rs = Database.select_stmt("*", "books");
-//
-//		while (rs.next()) {
-//			String categories = Book.getBookCategories(rs.getInt("book_ID"));
-//			Object[] row = {
-//					rs.getInt("book_ID")
-//					, rs.getString("book_name")
-//					, rs.getInt("num_page")
-//					, rs.getString("book_descnbtion")
-//					, rs.getString("book_author")
-//					, rs.getBoolean("is_translator")
-//					, rs.getInt("admin_ID")
-//					, categories
-//			};
-//
-//			model.addRow(row);
-//		}
-//		rs.close();
-//		Database.close_stmt();
+		ResultSet rs = Database.select_stmt("*", "books");
+
+		while (rs.next()) {
+			String categories = Book.getBookCategories(rs.getInt("book_ID"));
+			Object[] row = {
+					rs.getInt("book_ID")
+					, rs.getString("book_name")
+					, rs.getInt("num_page")
+					, rs.getString("book_descnbtion")
+					, rs.getString("book_author")
+					, rs.getInt("admin_ID")
+					, categories
+			};
+
+			model.addRow(row);
+		}
+		rs.close();
+		Database.close_stmt();
 
 		jScrollPane1.setViewportView(jTable1);
 		BorrowBook.setBackground(new java.awt.Color(10, 20, 86));
@@ -135,7 +133,7 @@ public class User_gui extends javax.swing.JPanel {
 					, rs.getInt("num_page")
 					, rs.getString("book_descnbtion")
 					, rs.getString("book_author")
-					, rs.getBoolean("is_translator")
+
 					, rs.getInt("admin_ID")
 					, categories
 			};
@@ -160,7 +158,6 @@ public class User_gui extends javax.swing.JPanel {
 					, rs.getInt("num_page")
 					, rs.getString("book_descnbtion")
 					, rs.getString("book_author")
-					, rs.getBoolean("is_translator")
 					, rs.getInt("admin_ID")
 					, categories
 			};
@@ -204,7 +201,6 @@ public class User_gui extends javax.swing.JPanel {
 					, rs.getInt("num_page")
 					, rs.getString("book_descnbtion")
 					, rs.getString("book_author")
-					, rs.getBoolean("is_translator")
 					, rs.getInt("admin_ID")
 					, categories
 			};

@@ -11,15 +11,15 @@ import java.sql.*;
  */
 public abstract class Database {
 	// Database connection details
-	private static final String url =
+	 static final String url =
 			"jdbc:sqlserver://"
 			+ "SQL8006.site4now.net:1433;" // server name or IP and port (POWER)  (DESKTOP-BBEFQFU)
 			+ "Database=db_aa3272_ahmed1515;" // database name
 //			 + "IntegratedSecurity=true;" // if you want to use Windows Authentication
 			+ "encrypt=true;"
 			+ "trustServerCertificate=true";
-	private static final String user = "db_aa3272_ahmed1515_admin";
-	private static final String password = "76549#$gcg";
+	 static final String user = "db_aa3272_ahmed1515_admin";
+	 static final String password = "76549#$gcg";
 
 	// Database connection object
 	protected static Connection con;
@@ -88,6 +88,8 @@ public abstract class Database {
 	// This function executes a SELECT statement on the database and returns the
 	// ResultSet.
 	public static ResultSet select_stmt(String columns, String tables) throws SQLException {
+
+
 		// Construct the SQL query by concatenating columns and tables.
 		String sql = "SELECT " + columns + " FROM " + tables + ";";
 

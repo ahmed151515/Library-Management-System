@@ -133,7 +133,6 @@ public class NAdminGui extends javax.swing.JPanel {
 				, "Num Page"
 				, "Book Descnbtion"
 				, "Book Author"
-				, "Is Translator"
 				, "Admin ID"
 				, "categorise"
 		};
@@ -142,25 +141,24 @@ public class NAdminGui extends javax.swing.JPanel {
 		jScrollPane1 = new JScrollPane(BookTable);
 
 
-//		ResultSet rs = Database.select_stmt("*", "books");
-//
-//		while (rs.next()) {
-//			String categories = Book.getBookCategories(rs.getInt("book_ID"));
-//			Object[] row = {
-//					rs.getInt("book_ID")
-//					, rs.getString("book_name")
-//					, rs.getInt("num_page")
-//					, rs.getString("book_descnbtion")
-//					, rs.getString("book_author")
-//					, rs.getBoolean("is_translator")
-//					, rs.getInt("admin_ID")
-//					, categories
-//			};
-//
-//			model.addRow(row);
-//		}
-//		rs.close();
-//		Database.close_stmt();
+		ResultSet rs = Database.select_stmt("*", "books");
+
+		while (rs.next()) {
+			String categories = Book.getBookCategories(rs.getInt("book_ID"));
+			Object[] row = {
+					rs.getInt("book_ID")
+					, rs.getString("book_name")
+					, rs.getInt("num_page")
+					, rs.getString("book_descnbtion")
+					, rs.getString("book_author")
+					, rs.getInt("admin_ID")
+					, categories
+			};
+
+			model.addRow(row);
+		}
+		rs.close();
+		Database.close_stmt();
 //        jScrollPane1.setViewportView(BookTable);
 
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -234,7 +232,6 @@ public class NAdminGui extends javax.swing.JPanel {
 					, rs.getInt("num_page")
 					, rs.getString("book_descnbtion")
 					, rs.getString("book_author")
-					, rs.getBoolean("is_translator")
 					, rs.getInt("admin_ID")
 					, categories
 			};
@@ -259,7 +256,6 @@ public class NAdminGui extends javax.swing.JPanel {
 					, rs.getInt("num_page")
 					, rs.getString("book_descnbtion")
 					, rs.getString("book_author")
-					, rs.getBoolean("is_translator")
 					, rs.getInt("admin_ID")
 					, categories
 			};
@@ -303,7 +299,6 @@ public class NAdminGui extends javax.swing.JPanel {
 					, rs.getInt("num_page")
 					, rs.getString("book_descnbtion")
 					, rs.getString("book_author")
-					, rs.getBoolean("is_translator")
 					, rs.getInt("admin_ID")
 					, categories
 			};

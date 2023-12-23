@@ -139,11 +139,8 @@ public class NLogin extends javax.swing.JPanel {
 		user_id = Integer.parseInt(userId);
 		if (User.is_user(userId, password)) {
 			GUI.cardLayout.show(GUI.frame.getContentPane(), "userGui");
-            User_gui.getData();
 		} else if (Admin.is_admin(userId, password)) {
 			GUI.cardLayout.show(GUI.frame.getContentPane(), "nAdminGui");
-            NAdminGui.getData();
-
 		} else
 		{
 			JOptionPane.showMessageDialog(null, "user id or password is wrong", "", JOptionPane.WARNING_MESSAGE);
