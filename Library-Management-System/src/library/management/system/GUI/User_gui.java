@@ -53,6 +53,7 @@ public class User_gui extends javax.swing.JPanel {
 //						"Title 1", "Title 2", "Title 3", "Title 4"
 //				}
 //		));
+// -------------------------------------------------------------------------------
 
 		String[] columns = {
 				"Book ID"
@@ -65,6 +66,8 @@ public class User_gui extends javax.swing.JPanel {
 		model = new DefaultTableModel(columns, 0);
 		jTable1 = new JTable(model);
 		jScrollPane1 = new JScrollPane(jTable1);
+// -------------------------------------------------------------------------------
+
 //		GUI.frame.add(jScrollPane1, BorderLayout.CENTER);
 
 
@@ -110,6 +113,7 @@ public class User_gui extends javax.swing.JPanel {
 		// TODO add your handling code here:
 	}//GEN-LAST:event_BorrowBookActionPerformed
 
+// -------------------------------------------------------------------------------
 
 
 	public static void getData() throws SQLException {
@@ -137,6 +141,7 @@ public class User_gui extends javax.swing.JPanel {
 		Database.close_stmt();
 
 	}
+// -------------------------------------------------------------------------------
 
 	// Variables declaration - do not modify//GEN-BEGIN:variables
 	private javax.swing.JButton BorrowBook;

@@ -128,7 +128,10 @@ public class NLogin extends javax.swing.JPanel {
     private javax.swing.JLabel UserIdLabel;
     private javax.swing.JTextField UserIdTextField;
     // End of variables declaration//GEN-END:variables
+// -------------------------------------------------------------------------------
+
     public static int user_id;
+
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) throws SQLException {//GEN-FIRST:event_loginButtonActionPerformed
 		// TODO add your handling code here:
 		String username = UserIdTextField.getText();
@@ -149,6 +152,7 @@ public class NLogin extends javax.swing.JPanel {
 		}
 
 	}//GEN-LAST:event_loginButtonActionPerformed
+// -------------------------------------------------------------------------------
 
 	private void userIdTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userIdTextFieldActionPerformed
 		// TODO add your handling code here:
@@ -156,8 +160,4 @@ public class NLogin extends javax.swing.JPanel {
 
 
 	// Variables declaration - do not modify//GEN-BEGIN:variables
-
-
-
-
 }

@@ -24,12 +24,14 @@ public class GUI {
         Borrow_GUI borrowGui = new Borrow_GUI();
 
 
+
         frame.add(loginPanel, "LoginPanel");
         frame.add(userGui, "userGui");
         frame.add(nAdminGui, "nAdminGui");
         frame.add(addBook, "addBook");
         frame.add(editBook, "editBook");
         frame.add(borrowGui, "borrowGui");
+
 
 
         cardLayout.show(frame.getContentPane(), "LoginPanel");

@@ -127,6 +127,8 @@ public class NAdminGui extends javax.swing.JPanel {
 //                "Title 1", "Title 2", "Title 3", "Title 4"
 //            }
 //        ));
+// -------------------------------------------------------------------------------
+
 		String[] columns = {
 				"Book ID"
 				, "Book Name"
@@ -140,6 +142,7 @@ public class NAdminGui extends javax.swing.JPanel {
 		BookTable = new JTable(model);
 		jScrollPane1 = new JScrollPane(BookTable);
 
+// -------------------------------------------------------------------------------
 
 //		ResultSet rs = Database.select_stmt("*", "books");
 //
@@ -176,6 +179,8 @@ public class NAdminGui extends javax.swing.JPanel {
 								.addComponent(PanelAdd_Edit_book, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
 		);
 	}// </editor-fold>//GEN-END:initComponents
+
+// -------------------------------------------------------------------------------
 
 	private void editbook(java.awt.event.ActionEvent evt) throws SQLException {//GEN-FIRST:event_jButton1ActionPerformed
 		int book_id = Integer.parseInt(JOptionPane.showInputDialog("book ID: "));
@@ -314,7 +319,7 @@ public class NAdminGui extends javax.swing.JPanel {
 		Database.close_stmt();
 
 	}
-
+// -------------------------------------------------------------------------------
 	// Variables declaration - do not modify//GEN-BEGIN:variables
 	private javax.swing.JButton AddBookButton;
 	private static javax.swing.JTable BookTable;

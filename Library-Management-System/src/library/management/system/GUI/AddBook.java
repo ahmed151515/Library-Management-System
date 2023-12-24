@@ -195,6 +195,7 @@ public class AddBook extends javax.swing.JPanel {
 		// TODO add your handling code here:
 
 	}//GEN-LAST:event_TextFieldBookDescActionPerformed
+// -------------------------------------------------------------------------------
 
 	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) throws SQLException {//GEN-FIRST:event_jButton1ActionPerformed
 		NAdminGui.refresh();
@@ -229,6 +230,8 @@ public class AddBook extends javax.swing.JPanel {
 			throw new RuntimeException(e);
 		}
 	}
+// -------------------------------------------------------------------------------
+
 
 	//GEN-LAST:event_ButtonSendActionPerformed
 

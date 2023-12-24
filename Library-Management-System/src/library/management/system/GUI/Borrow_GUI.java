@@ -85,6 +85,8 @@ public class Borrow_GUI extends javax.swing.JPanel {
 //                "Title 1", "Title 2", "Title 3", "Title 4"
 //            }
 //        ));
+// -------------------------------------------------------------------------------
+
 		String[] columns = {
 				"Book ID"
 				, "Book Name"
@@ -96,6 +98,7 @@ public class Borrow_GUI extends javax.swing.JPanel {
 		BookTable = new JTable(model);
 		jScrollPane1 = new JScrollPane(BookTable);
 
+// -------------------------------------------------------------------------------
 
 //		ResultSet rs = Database.select_stmt("*", "books");
 //
@@ -135,10 +138,12 @@ public class Borrow_GUI extends javax.swing.JPanel {
 	}// </editor-fold>//GEN-END:initComponents
 
 
+// -------------------------------------------------------------------------------
 
 	private void ButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBackActionPerformed
 		GUI.cardLayout.show(GUI.frame.getContentPane(), "nAdminGui");
 	}//GEN-LAST:event_ButtonBackActionPerformed
+// -------------------------------------------------------------------------------
 
 
 
@@ -218,6 +223,7 @@ public class Borrow_GUI extends javax.swing.JPanel {
 //		}
 //		return -1;
 //	}
+// -------------------------------------------------------------------------------
 
 	public static void getData() throws SQLException {
 
@@ -239,6 +245,7 @@ public class Borrow_GUI extends javax.swing.JPanel {
 		rs.close();
 		Database.close_stmt();
 	}
+// -------------------------------------------------------------------------------
 
 	// Variables declaration - do not modify//GEN-BEGIN:variables
 

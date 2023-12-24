@@ -211,6 +211,7 @@ public class EditBook extends javax.swing.JPanel {
 	private void Back(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CategoryActionPerformed
 		GUI.cardLayout.show(GUI.frame.getContentPane(), "nAdminGui");
 	}
+// -------------------------------------------------------------------------------
 
 	private void Send(java.awt.event.ActionEvent e) {
 		try {
@@ -255,6 +256,8 @@ public class EditBook extends javax.swing.JPanel {
 		rs.close();
 		Database.close_stmt();
 	}
+// -------------------------------------------------------------------------------
+
 
 	// Variables declaration - do not modify//GEN-BEGIN:variables
 	private static javax.swing.JTextField Author;
