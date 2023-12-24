@@ -1,6 +1,6 @@
 package library.management.system;
 
-import java.time.LocalDate;
+
 import java.sql.*;
 
 
@@ -10,21 +10,17 @@ public class Borrow extends Database {
 	private int user_id;
 
 	private int book_id;
-	private LocalDate start_date;
-	private LocalDate end_date;
+	private String start_date;
+	private String end_date;
 
-	public Borrow(int user_id, int book_id, LocalDate start_date, LocalDate end_date) {
+	public Borrow(int user_id, int book_id, String end_date) {
 		this.user_id = user_id;
-
 		this.book_id = book_id;
-		this.start_date = start_date;
 		this.end_date = end_date;
 	}
 	public Borrow() {
 		this.user_id = 0;
-
 		this.book_id = 0;
-		this.start_date = null;
 		this.end_date = null;
 	}
 
@@ -46,23 +42,29 @@ public class Borrow extends Database {
 		this.book_id = book_id;
 	}
 
-	public LocalDate getStart_date() {
+	public String getStart_date() {
 		return start_date;
 	}
+	public Date getStart_date_as_sqlFormat() {
+		return Date.valueOf(start_date);
+	}
 
-	public void setStart_date(LocalDate start_date) {
+	public void setStart_date(String start_date) {
 		this.start_date = start_date;
 	}
 
-	public LocalDate getEnd_date() {
+	public String getEnd_date() {
 		return end_date;
 	}
-
-	public void setEnd_date(LocalDate end_date) {
+	public Date getEnd_date_as_sqlFormat() {
+		return Date.valueOf(end_date);
+	}
+	/**
+	* must format yyyy-mm-dd
+	*/
+	public void setEnd_date(String end_date) {
 		this.end_date = end_date;
 	}
-
-
 
 	// handle insert Statement to borrow
 	// This function inserts a record of a user borrowing a book into the
@@ -70,7 +72,7 @@ public class Borrow extends Database {
 	@Override
 	public  int insert() throws SQLException {
 		// SQL query to insert values into the 'user_borrow_books' table.
-		sql = "INSERT INTO user_borrow_books VALUES (?,?,?,?);";
+		sql = "INSERT INTO user_borrow_books (user_id, book_id, end_date) VALUES (?,?,?);";
 		int result = 0;
 
 		try {
@@ -80,10 +82,7 @@ public class Borrow extends Database {
 			// Set the values for the placeholders in the prepared statement.
 			stmt.setInt(1, getUser_id());
 			stmt.setInt(2, getBook_id());
-			java.sql.Date date = java.sql.Date.valueOf(getStart_date());
-			stmt.setDate(3, date);
-			date = java.sql.Date.valueOf(getEnd_date());
-			stmt.setDate(4, date);
+			stmt.setDate(3, getEnd_date_as_sqlFormat());
 
 
 			// Execute the insert query and store the result.
@@ -91,7 +90,7 @@ public class Borrow extends Database {
 		} catch (Exception e) {
 			// Handle exceptions, close the statement, and print the error.
 			stmt.close();
-			System.out.println(e);
+			e.printStackTrace();
 		} finally {
 			stmt.close();
 		}
@@ -119,10 +118,8 @@ public class Borrow extends Database {
 			// Set the values for the placeholders in the prepared statement.
 			stmt.setInt(1, getUser_id());
 			stmt.setInt(2, getBook_id());
-			java.sql.Date date = java.sql.Date.valueOf(getStart_date());
-			stmt.setDate(3, date);
-			date = java.sql.Date.valueOf(getEnd_date());
-			stmt.setDate(4, date);
+			stmt.setDate(3, getStart_date_as_sqlFormat());
+			stmt.setDate(4, getEnd_date_as_sqlFormat());
 
 
 			// Execute the update query and store the result.
@@ -130,7 +127,7 @@ public class Borrow extends Database {
 		} catch (Exception e) {
 			// Handle exceptions, close the statement, and print the error.
 			stmt.close();
-			System.out.println(e);
+			e.printStackTrace();
 		} finally {
 			stmt.close();
 		}
@@ -159,7 +156,7 @@ public class Borrow extends Database {
 		} catch (Exception e) {
 			// Handle exceptions, close the statement, and print the error.
 			stmt.close();
-			System.out.println(e);
+			e.printStackTrace();
 		} finally {
 			stmt.close();
 		}

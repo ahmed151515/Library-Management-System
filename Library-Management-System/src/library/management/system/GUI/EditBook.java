@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 
@@ -216,7 +217,7 @@ public class EditBook extends javax.swing.JPanel {
 			Book book = new Book(
 					bookname.getText()
 					, Integer.parseInt(num_page.getText())
-					, new LinkedList<String>(Arrays.asList(Category.getText().split(",\\s*")))
+					, new ArrayList<>(Arrays.asList(Category.getText().split(",\\s*")))
 					, Author.getText()
 					, Description.getText()
 					, NLogin.user_id
@@ -226,7 +227,6 @@ public class EditBook extends javax.swing.JPanel {
 			if (result > 0) {
 				JOptionPane.showMessageDialog(GUI.frame, "The book has been successfully Edited");
 				NAdminGui.refresh(book_id);
-				User_gui.refresh(book_id);
 			} else {
 				JOptionPane.showMessageDialog(GUI.frame, "Failed to add the book");
 

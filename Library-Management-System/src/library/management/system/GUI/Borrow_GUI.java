@@ -88,7 +88,7 @@ public class Borrow_GUI extends javax.swing.JPanel {
 		String[] columns = {
 				"Book ID"
 				, "Book Name"
-				, "User ID"
+				, "Username"
 				, "User Email"
 				, "End Date"
 		};
@@ -229,7 +229,7 @@ public class Borrow_GUI extends javax.swing.JPanel {
 			Object[] row = {
 					rs.getInt("book_ID")
 					, rs.getString("book_name")
-					, rs.getInt("user_ID")
+					, rs.getString("username")
 					, rs.getString("email")
 					, rs.getDate("end_date")
 			};

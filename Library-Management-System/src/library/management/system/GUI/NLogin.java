@@ -97,7 +97,7 @@ public class NLogin extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(18, 328, 0, 311);
         add(UserIdTextField, gridBagConstraints);
 
-        UserIdLabel.setText("User id");
+        UserIdLabel.setText("User name");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -128,18 +128,20 @@ public class NLogin extends javax.swing.JPanel {
     private javax.swing.JLabel UserIdLabel;
     private javax.swing.JTextField UserIdTextField;
     // End of variables declaration//GEN-END:variables
-    static int user_id;
+    public static int user_id;
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) throws SQLException {//GEN-FIRST:event_loginButtonActionPerformed
 		// TODO add your handling code here:
-		String userId = UserIdTextField.getText();
+		String username = UserIdTextField.getText();
 
 		char[] passwordChars = PasswordField.getPassword();
 		String password = new String(passwordChars);
 
-		user_id = Integer.parseInt(userId);
-		if (User.is_user(userId, password)) {
+
+		if (User.is_user(username, password)) {
+            User_gui.getData();
 			GUI.cardLayout.show(GUI.frame.getContentPane(), "userGui");
-		} else if (Admin.is_admin(userId, password)) {
+		} else if (Admin.is_admin(username, password)) {
+            NAdminGui.getData();
 			GUI.cardLayout.show(GUI.frame.getContentPane(), "nAdminGui");
 		} else
 		{

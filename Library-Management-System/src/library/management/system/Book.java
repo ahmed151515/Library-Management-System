@@ -5,6 +5,7 @@
 package library.management.system;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 /**
@@ -24,9 +25,9 @@ public class Book extends Database {
 	private int book_id;
 	private String name;
 	private int num_page;
-	private LinkedList<String> category;
+	private ArrayList<String> category;
 	private String author_name;
-	private boolean translator;
+
 	private String describtion;
 	private int admin_id;
 
@@ -37,27 +38,15 @@ public class Book extends Database {
 		this.num_page = 0;
 		this.category = null;
 		this.author_name = null;
-		this.translator = false;
 		this.describtion = null;
 		this.admin_id = 0;
 
 
 	}
 
-	public Book(String name, int num_page, LinkedList<String> category,
-	            String author_name, boolean translator, String describtion, int admin_id) {
-		this.book_id = count++;
-		this.name = name;
-		this.num_page = num_page;
-		this.category = category;
-		this.author_name = author_name;
-		this.translator = translator;
-		this.describtion = describtion;
-		this.admin_id = admin_id;
 
-	}
 
-	public Book(String name, int num_page, LinkedList<String> category,
+	public Book(String name, int num_page, ArrayList<String> category,
 	            String author_name, String describtion, int admin_id) {
 		this.book_id = count++;
 		this.name = name;
@@ -65,7 +54,7 @@ public class Book extends Database {
 		this.category = category;
 		this.author_name = author_name;
 		this.describtion = describtion;
-		this.translator = false;
+
 		this.admin_id = admin_id;
 
 	}
@@ -102,11 +91,11 @@ public class Book extends Database {
 		this.num_page = num_page;
 	}
 
-	public LinkedList<String> getCategory() {
+	public ArrayList<String> getCategory() {
 		return category;
 	}
 
-	public void setCategory(LinkedList<String> category) {
+	public void setCategory(ArrayList<String> category) {
 		this.category = category;
 	}
 
@@ -123,13 +112,7 @@ public class Book extends Database {
 		this.author_name = author_name;
 	}
 
-	public boolean isTranslator() {
-		return translator;
-	}
 
-	public void setTranslator(boolean translator) {
-		this.translator = translator;
-	}
 
 	public String getDescribtion() {
 		return describtion;
@@ -168,7 +151,7 @@ public class Book extends Database {
 		} catch (Exception e) {
 			// Handle any exceptions and close the statement.
 			stmt.close();
-			System.out.println(e);
+			e.printStackTrace();
 		}
 
 		// Return the total count of books.
@@ -197,10 +180,16 @@ public class Book extends Database {
 		return categories.toString();
 	}
 
-	// This function inserts a new book into the 'books' table along with its
-	// categories.
-	// It requires an Admin object for authorization and a Book object for book
-	// details.
+
+	/**
+	 * Inserts a new book record into the 'books' table in the database.
+	 *
+	 * This method prepares and executes an SQL query to insert book details into the 'books' table.
+	 * Additionally, it invokes the insert_categorise method to handle the insertion of book categories.
+	 *
+	 * @return The number of rows affected by the insert operation.
+	 * @throws SQLException If a database access error occurs.
+	 */
 	@Override
 	public int insert() throws SQLException {
 		// SQL query to insert values into the 'books' table.
@@ -227,19 +216,24 @@ public class Book extends Database {
 		} finally {
 			stmt.close();
 		}
+
+		// Insert book categories using the insert_categorise method.
 		insert_categorise(category, 0);
+
 		return result;
 	}
 
-	private int insert_categorise(LinkedList<String> category, int size) throws SQLException {
-		// Insert book categories into the 'book_categories' table.
-		int result = 0;
 
-		for (int i = 0; i < category.size(); i++) {
+	private int[] insert_categorise(ArrayList<String> category, int size) throws SQLException {
+		// Insert book categories into the 'book_categories' table.
+
+
+		try {
+			// Prepare the statement for executing the second insert query.
 			sql = "INSERT INTO book_categorise VALUES (?,?,?);";
-			try {
-				// Prepare the statement for executing the second insert query.
-				stmt = con.prepareStatement(sql);
+			stmt = con.prepareStatement(sql);
+			for (int i = 0; i < category.size(); i++) {
+
 
 				// Set the values for the placeholders in the prepared statement.
 				stmt.setInt(1, getBook_id());
@@ -247,99 +241,122 @@ public class Book extends Database {
 				stmt.setInt(3, i + size);
 
 				// Execute the second insert query.
-				result += stmt.executeUpdate();
+				stmt.addBatch();
 
-				// Close the statement.
-				stmt.close();
-			} catch (Exception e) {
-				// Handle exceptions, close the statement, and print the error.
-				stmt.close();
-				System.out.println(e);
-			} finally {
-				stmt.close();
+
 			}
+			return stmt.executeBatch();
+		} catch (Exception e) {
+			// Handle exceptions, close the statement, and print the error.
+			stmt.close();
+			e.printStackTrace();
+		} finally {
+			stmt.close();
+
 		}
 
-		// Return the result of the first insert query.
-		return result;
+
+		return null;
 	}
 
-	private void handle_deletion(int size) throws SQLException {
+	/**
+	 * Handles the editing of book categorization in a specific category based on the provided size.
+	 *
+	 * This method is responsible for managing the changes in book categorization, such as updating
+	 * category names, indices, and deleting or adding books as needed.
+	 * count is number of category in database
+	 * CASE count - size = 0 No extra category
+	 * CASE count - size < 0 There is an additional category I must add it
+	 * CASE count - size > 0 There is an incomplete category  I must  delete it
+	 *
+	 * @param size  of categorise after edit
+	 * @throws SQLException If a database access error occurs.
+	 */
+	private void handle_edit_categorise(int size) throws SQLException {
+		// SQL query to retrieve the count of books in a specific category
 		ResultSet rs = select_stmt("count(book_id)", "book_categorise", "book_id = " + book_id);
-		if (rs.next()) {
 
+		if (rs.next()) {
+			// Retrieve the count from the result
 			int count = rs.getInt(1);
 			rs.close();
 
+			// Check if there are books to be modified or added
 			if (count - size == 0) {
-				return;
+				return; // No books to modify or add
 			} else if (count - size > 0) {
+				// Update book categorization based on the required modification size
+				String sql = "UPDATE book_categorise SET category=?, category_index =? WHERE book_ID=? and category_index =?;";
+				stmt = con.prepareStatement(sql);
+
 				for (int i = size; i < count; i++) {
-					String sql = "UPDATE book_categorise SET category=?,"
-							+ " category_index =? WHERE book_ID=? and category_index =?;";
-					stmt = con.prepareStatement(sql);
-
-
+					// Set the update values
 					stmt.setString(1, "x");
 					stmt.setInt(3, getBook_id());
 					stmt.setInt(4, i);
 					stmt.setInt(2, -1);
 
-
-					stmt.executeUpdate();
-					close_stmt();
+					stmt.addBatch(); // Add to the update batch
 				}
+
+				stmt.executeBatch(); // Execute the update batch
+				close_stmt();
+
+				// Delete excess books
 				sql = "delete from book_categorise WHERE book_ID=? and category_index = ?;";
 				stmt = con.prepareStatement(sql);
 				stmt.setInt(1, getBook_id());
 				stmt.setInt(2, -1);
 
-				stmt.executeUpdate();
+				stmt.executeUpdate(); // Execute the deletion
 				close_stmt();
 
 			} else {
-				LinkedList<String> extra_category = new LinkedList<String>();
+				// Add extra categories if there are additional categories
+				ArrayList<String> extra_category = new ArrayList<String>();
 				for (int i = count; i < size; i++) {
 					extra_category.add(category.get(i));
-
 				}
-				insert_categorise(extra_category, count);
+				insert_categorise(extra_category, count); // Add the extra categories
 			}
 		}
 	}
+
+
 
 	// This function updates a book's information in the 'books' table and its
 	// categories in the 'book_categorise' table.
 	// It requires an Admin object for authorization and a Book object for book
 	// details.
 
-	public int update_categorise(LinkedList<String> category) throws SQLException {
-		handle_deletion(category.size());
+	public int update_categorise(ArrayList<String> category) throws SQLException {
+		handle_edit_categorise(category.size());
 		int result = 0;
-		// Update book categories in the 'book_categorise' table.
-		for (int i = 0; i < category.size(); i++) {
+		try {
 			String sql = "UPDATE book_categorise SET category=? WHERE book_ID=? and category_index = ?;";
-			try {
-				// Prepare the statement for executing the update query.
-				stmt = con.prepareStatement(sql);
+			// Prepare the statement for executing the update query.
+			stmt = con.prepareStatement(sql);
+			// Update book categories in the 'book_categorise' table.
+			for (int i = 0; i < category.size(); i++) {
 
 				// Set the values for the placeholders in the prepared statement.
 				stmt.setString(1, category.get(i));
 				stmt.setInt(2, getBook_id());
 				stmt.setInt(3, i);
 
-				// Execute the update query.
-				result += stmt.executeUpdate();
+				stmt.addBatch();
 
-				// Close the statement.
-				stmt.close();
-			} catch (Exception e) {
-				// Handle exceptions, close the statement, and print the error.
-				stmt.close();
-				System.out.println(e);
-			} finally {
-				stmt.close();
 			}
+			stmt.executeBatch();
+			// Close the statement.
+			stmt.close();
+		} catch (Exception e) {
+			// Handle exceptions, close the statement, and print the error.
+			stmt.close();
+
+			e.printStackTrace();
+		} finally {
+			stmt.close();
 		}
 		return result;
 	}
@@ -367,14 +384,14 @@ public class Book extends Database {
 			stmt.setString(3, getDescribtion());
 			stmt.setString(4, getAuthor_name());
 			stmt.setInt(5, getAdmin_id());
-			stmt.setInt(7, getBook_id());
+			stmt.setInt(6, getBook_id());
 
 			// Execute the update query and store the result.
 			result = stmt.executeUpdate();
 		} catch (Exception e) {
 			// Handle exceptions, close the statement, and print the error.
 			stmt.close();
-			System.out.println(e);
+			e.printStackTrace();
 		} finally {
 			stmt.close();
 		}
@@ -402,7 +419,7 @@ public class Book extends Database {
 		} catch (Exception e) {
 			// Handle exceptions, close the statement, and print the error.
 			stmt.close();
-			System.out.println(e);
+			e.printStackTrace();
 		}
 
 		// Delete the book from the 'books' table.
@@ -420,7 +437,7 @@ public class Book extends Database {
 		} catch (Exception e) {
 			// Handle exceptions, close the statement, and print the error.
 			stmt.close();
-			System.out.println(e);
+			e.printStackTrace();
 		} finally {
 			stmt.close();
 		}
@@ -437,7 +454,6 @@ public class Book extends Database {
 				", num_page=" + num_page +
 				", category=" + category +
 				", author_name='" + author_name + '\'' +
-				", translator=" + translator +
 				", describtion='" + describtion + '\'' +
 				", admin_id=" + admin_id +
 				'}';

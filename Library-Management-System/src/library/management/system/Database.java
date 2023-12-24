@@ -13,13 +13,17 @@ public abstract class Database {
 	// Database connection details
 	 static final String url =
 			"jdbc:sqlserver://"
-			+ "SQL8006.site4now.net:1433;" // server name or IP and port (POWER)  (DESKTOP-BBEFQFU)
-			+ "Database=db_aa3272_ahmed1515;" // database name
+//			+ "SQL8006.site4now.net:1433;" // server online  (DESKTOP-BBEFQFU)
+			+ "DESKTOP-BBEFQFU;" // (DESKTOP-BBEFQFU)
+			+ "Database=Library_Management_System;" // database name
+//			+ "Database=db_aa3272_ahmed1515;" // database name
 //			 + "IntegratedSecurity=true;" // if you want to use Windows Authentication
 			+ "encrypt=true;"
 			+ "trustServerCertificate=true";
-	 static final String user = "db_aa3272_ahmed1515_admin";
-	 static final String password = "76549#$gcg";
+//	 static final String user = "db_aa3272_ahmed1515_admin";
+	 static final String user = "admin"; // DESKTOP-BBEFQFU
+//	 static final String password = "76549#$gcg";
+	 static final String password = "admin"; // DESKTOP-BBEFQFU
 
 	// Database connection object
 	protected static Connection con;
@@ -76,7 +80,7 @@ public abstract class Database {
 	//
 	// } catch (Exception e) {
 	// stmt.close();
-	// System.out.println(e);
+	// e.printStackTrace();
 	// }
 	// return count;
 	// }
@@ -96,11 +100,12 @@ public abstract class Database {
 		try {
 			// Prepare the statement and execute the query.
 			stmt = con.prepareStatement(sql);
+
 			return stmt.executeQuery();
 		} catch (Exception e) {
 			// Handle any exceptions, close the statement, and print the error message.
 			close_stmt();
-			System.out.println(e);
+			e.printStackTrace();
 		}
 
 		// Return null in case of an exception or no result.
@@ -120,7 +125,7 @@ public abstract class Database {
 		} catch (Exception e) {
 			// Handle any exceptions, close the statement, and print the error message.
 			close_stmt();
-			System.out.println(e);
+			e.printStackTrace();
 		}
 
 		// Return null in case of an exception or no result.

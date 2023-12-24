@@ -5,6 +5,8 @@
 package library.management.system;
 
 
+import library.management.system.GUI.NLogin;
+
 import java.sql.*;
 
 /**
@@ -15,6 +17,7 @@ public class User extends Database {
 
 
 	private int user_ID;
+	private String username;
 	private String password;
 	private String email;
 
@@ -27,15 +30,17 @@ public class User extends Database {
 		this.email = null;
 	}
 
-	public User(String password, String email) {
+	public User(String username,String password, String email) {
 
+		this.username = username;
 		this.password = password;
 		this.email = email;
 
 	}
 
-	public User(int user_ID, String password, String email) {
+	public User(int user_ID,String username, String password, String email) {
 		this.user_ID = user_ID;
+		this.username = username;
 		this.password = password;
 		this.email = email;
 	}
@@ -63,22 +68,31 @@ public class User extends Database {
 		this.email = email;
 	}
 
+	public String getUsername() {
+		return username;
+	}
 
-	public static boolean is_user(String id, String password) throws SQLException {
-		String sql = "SELECT * FROM users WHERE user_id=? AND password=?";
-		System.out.println(con.isClosed());
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public static boolean is_user(String username, String password) throws SQLException {
+		String sql = "SELECT * FROM users WHERE username=? AND password=?";
+
 		try (PreparedStatement stmt = con.prepareStatement(sql)) {
 			// Set parameters using PreparedStatement to prevent SQL injection.
-			stmt.setString(1, id);
+			stmt.setString(1, username);
 			stmt.setString(2, password);
 
 			try (ResultSet resultSet = stmt.executeQuery()) {
-
-				return resultSet.next();
+				if (resultSet.next()) {
+					NLogin.user_id = resultSet.getInt("user_ID");
+					return true;
+				}
 			}
 		} catch (Exception e) {
 
-			System.out.println(e);
+			e.printStackTrace();
 		}
 
 		return false;
@@ -88,22 +102,23 @@ public class User extends Database {
 	@Override
 	public  int insert() throws SQLException {
 		// SQL query to insert values into the 'users' table.
-		String sql = "INSERT INTO users VALUES (?, ?);";
+		String sql = "INSERT INTO users VALUES (?,?, ?);";
 
 		int result = 0; // Variable to store the execution result.
 
 		try {
 
 			stmt = con.prepareStatement(sql);
-			stmt.setString(1, getPassword());
-			stmt.setString(2, getEmail());
+			stmt.setString(1, getUsername());
+			stmt.setString(2, getPassword());
+			stmt.setString(3, getEmail());
 
 			// Execute the update query and store the result.
 			result = stmt.executeUpdate();
 		} catch (Exception e) {
 			// Handle any exceptions, close the statement, and print the error message.
 			stmt.close();
-			System.out.println(e);
+			e.printStackTrace();
 		} finally {
 			stmt.close();
 		}
@@ -117,7 +132,7 @@ public class User extends Database {
 	@Override
 	public  int update() throws SQLException {
 		// SQL query to update user information in the 'users' table.
-		String sql = "UPDATE users SET password=?, email=? WHERE user_id = ?;";
+		String sql = "UPDATE users SET username=? password=?, email=? WHERE user_id = ?;";
 
 		int result = 0; // Variable to store the execution result.
 
@@ -126,16 +141,17 @@ public class User extends Database {
 			stmt = con.prepareStatement(sql);
 
 			// Set the values for the placeholders in the prepared statement.
-			stmt.setString(1, getPassword());
-			stmt.setString(2, getEmail());
-			stmt.setInt(3, getUser_ID());
+			stmt.setString(1, getUsername());
+			stmt.setString(2, getPassword());
+			stmt.setString(3, getEmail());
+			stmt.setInt(4, getUser_ID());
 
 			// Execute the update query and store the result.
 			result = stmt.executeUpdate();
 		} catch (Exception e) {
 			// Handle any exceptions, close the statement, and print the error message.
 			stmt.close();
-			System.out.println(e);
+			e.printStackTrace();
 		} finally {
 			stmt.close();
 		}
@@ -164,7 +180,7 @@ public class User extends Database {
 		} catch (Exception e) {
 			// Handle any exceptions, close the statement, and print the error message.
 			stmt.close();
-			System.out.println(e);
+			e.printStackTrace();
 		} finally {
 			stmt.close();
 		}

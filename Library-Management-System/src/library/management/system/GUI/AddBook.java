@@ -9,6 +9,7 @@ import library.management.system.Database;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import javax.swing.*;
@@ -162,7 +163,11 @@ public class AddBook extends javax.swing.JPanel {
 		jButton1.setText("<<<");
 		jButton1.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				jButton1ActionPerformed(evt);
+				try {
+					jButton1ActionPerformed(evt);
+				} catch (SQLException e) {
+					throw new RuntimeException(e);
+				}
 			}
 		});
 		gridBagConstraints = new java.awt.GridBagConstraints();
@@ -191,7 +196,8 @@ public class AddBook extends javax.swing.JPanel {
 
 	}//GEN-LAST:event_TextFieldBookDescActionPerformed
 
-	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) throws SQLException {//GEN-FIRST:event_jButton1ActionPerformed
+		NAdminGui.refresh();
 		GUI.cardLayout.show(GUI.frame.getContentPane(), "nAdminGui");
 	}//GEN-LAST:event_jButton1ActionPerformed
 
@@ -200,7 +206,7 @@ public class AddBook extends javax.swing.JPanel {
 			Book book = new Book(
 					TextFieldBookName.getText()
 					, Integer.parseInt(TextFieldBookPages.getText())
-					, new LinkedList<String>(Arrays.asList(TextFieldBookCategory.getText().split(",\\s*")))
+					, new ArrayList<>(Arrays.asList(TextFieldBookCategory.getText().split(",\\s*")))
 					, TextFieldBookAuthor.getText()
 					, TextFieldBookDesc.getText()
 					, NLogin.user_id
@@ -208,8 +214,7 @@ public class AddBook extends javax.swing.JPanel {
 			int result = book.insert();
 			if (result > 0) {
 				JOptionPane.showMessageDialog(GUI.frame,"The book has been successfully added");
-				NAdminGui.refresh();
-				User_gui.refresh();
+
 			} else {
 				JOptionPane.showMessageDialog(GUI.frame,"Failed to add the book");
 

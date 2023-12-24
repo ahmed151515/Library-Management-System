@@ -60,7 +60,6 @@ public class User_gui extends javax.swing.JPanel {
 				, "Num Page"
 				, "Book Descnbtion"
 				, "Book Author"
-				, "Admin ID"
 				, "categorise"
 		};
 		model = new DefaultTableModel(columns, 0);
@@ -69,24 +68,23 @@ public class User_gui extends javax.swing.JPanel {
 //		GUI.frame.add(jScrollPane1, BorderLayout.CENTER);
 
 
-		ResultSet rs = Database.select_stmt("*", "books");
-
-		while (rs.next()) {
-			String categories = Book.getBookCategories(rs.getInt("book_ID"));
-			Object[] row = {
-					rs.getInt("book_ID")
-					, rs.getString("book_name")
-					, rs.getInt("num_page")
-					, rs.getString("book_descnbtion")
-					, rs.getString("book_author")
-					, rs.getInt("admin_ID")
-					, categories
-			};
-
-			model.addRow(row);
-		}
-		rs.close();
-		Database.close_stmt();
+//		ResultSet rs = Database.select_stmt("*", "User_GUI");
+//
+//		while (rs.next()) {
+//			String categories = Book.getBookCategories(rs.getInt("book_ID"));
+//			Object[] row = {
+//					rs.getInt("book_ID")
+//					, rs.getString("book_name")
+//					, rs.getInt("num_page")
+//					, rs.getString("book_descnbtion")
+//					, rs.getString("book_author")
+//					, categories
+//			};
+//
+//			model.addRow(row);
+//		}
+//		rs.close();
+//		Database.close_stmt();
 
 		jScrollPane1.setViewportView(jTable1);
 		BorrowBook.setBackground(new java.awt.Color(10, 20, 86));
@@ -112,87 +110,16 @@ public class User_gui extends javax.swing.JPanel {
 		// TODO add your handling code here:
 	}//GEN-LAST:event_BorrowBookActionPerformed
 
-	public static void refresh() throws SQLException {
-		ResultSet rs;
-		if (model.getRowCount() > 0) {
-			int max_book_id = Integer.parseInt(
-					model.getValueAt(model.getRowCount() - 1
-							, model.findColumn("Book ID")).toString()
-			);
-			rs = Database.select_stmt("*", "books", "book_id > " + max_book_id);
-		} else {
 
-			rs = Database.select_stmt("*", "books");
-		}
-		// must handle delete row
-		while (rs.next()) {
-			String categories = Book.getBookCategories(rs.getInt("book_ID"));
-			Object[] row = {
-					rs.getInt("book_ID")
-					, rs.getString("book_name")
-					, rs.getInt("num_page")
-					, rs.getString("book_descnbtion")
-					, rs.getString("book_author")
-
-					, rs.getInt("admin_ID")
-					, categories
-			};
-
-			model.addRow(row);
-		}
-		rs.close();
-		Database.close_stmt();
-
-	}
-
-	public static void refresh(int book_id) throws SQLException {
-
-
-		ResultSet rs = Database.select_stmt("*", "books", "book_id = " + book_id);
-
-		if (rs.next()) {
-			String categories = Book.getBookCategories(rs.getInt("book_ID"));
-			Object[] row = {
-					rs.getInt("book_ID")
-					, rs.getString("book_name")
-					, rs.getInt("num_page")
-					, rs.getString("book_descnbtion")
-					, rs.getString("book_author")
-					, rs.getInt("admin_ID")
-					, categories
-			};
-			int rowIndex = findRowIndex(book_id);
-
-			if (rowIndex != -1) {
-
-				for (int i = 0; i < model.getColumnCount(); i++) {
-					model.setValueAt(row[i], rowIndex, i);
-				}
-			}
-
-
-		}
-		rs.close();
-		Database.close_stmt();
-
-	}
-
-	private static int findRowIndex(int book_id) {
-
-
-		for (int i = 0; i < model.getRowCount(); i++) {
-			if ((int) model.getValueAt(i, 0) == book_id) {
-				return i;
-			}
-		}
-		return -1;
-	}
 
 	public static void getData() throws SQLException {
 
-		ResultSet rs = Database.select_stmt("*", "books");
+		if (model.getRowCount() > 0) {
+			return;
+		}
 
-		// must handle delete row
+		ResultSet rs = Database.select_stmt("*", "User_GUI");
+
 		while (rs.next()) {
 			String categories = Book.getBookCategories(rs.getInt("book_ID"));
 			Object[] row = {
@@ -201,7 +128,6 @@ public class User_gui extends javax.swing.JPanel {
 					, rs.getInt("num_page")
 					, rs.getString("book_descnbtion")
 					, rs.getString("book_author")
-					, rs.getInt("admin_ID")
 					, categories
 			};
 

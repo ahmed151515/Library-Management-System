@@ -141,24 +141,24 @@ public class NAdminGui extends javax.swing.JPanel {
 		jScrollPane1 = new JScrollPane(BookTable);
 
 
-		ResultSet rs = Database.select_stmt("*", "books");
-
-		while (rs.next()) {
-			String categories = Book.getBookCategories(rs.getInt("book_ID"));
-			Object[] row = {
-					rs.getInt("book_ID")
-					, rs.getString("book_name")
-					, rs.getInt("num_page")
-					, rs.getString("book_descnbtion")
-					, rs.getString("book_author")
-					, rs.getInt("admin_ID")
-					, categories
-			};
-
-			model.addRow(row);
-		}
-		rs.close();
-		Database.close_stmt();
+//		ResultSet rs = Database.select_stmt("*", "books");
+//
+//		while (rs.next()) {
+//			String categories = Book.getBookCategories(rs.getInt("book_ID"));
+//			Object[] row = {
+//					rs.getInt("book_ID")
+//					, rs.getString("book_name")
+//					, rs.getInt("num_page")
+//					, rs.getString("book_descnbtion")
+//					, rs.getString("book_author")
+//					, rs.getInt("admin_ID")
+//					, categories
+//			};
+//
+//			model.addRow(row);
+//		}
+//		rs.close();
+//		Database.close_stmt();
 //        jScrollPane1.setViewportView(BookTable);
 
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -203,7 +203,9 @@ public class NAdminGui extends javax.swing.JPanel {
 
 		GUI.cardLayout.show(GUI.frame.getContentPane(), "addBook");
 
-	}private void borrow(java.awt.event.ActionEvent evt) throws SQLException {
+	}
+
+	private void borrow(java.awt.event.ActionEvent evt) throws SQLException {
 
 
 		GUI.cardLayout.show(GUI.frame.getContentPane(), "borrowGui");
@@ -218,10 +220,10 @@ public class NAdminGui extends javax.swing.JPanel {
 					model.getValueAt(model.getRowCount() - 1
 							, model.findColumn("Book ID")).toString()
 			);
-			 rs = Database.select_stmt("*", "books", "book_id > " + max_book_id);
-		}else {
+			rs = Database.select_stmt("*", "books", "book_id > " + max_book_id);
+		} else {
 
-			 rs = Database.select_stmt("*", "books");
+			rs = Database.select_stmt("*", "books");
 		}
 		// must handle delete row
 		while (rs.next()) {
@@ -287,6 +289,9 @@ public class NAdminGui extends javax.swing.JPanel {
 	}
 
 	public static void getData() throws SQLException {
+		if (model.getRowCount() > 0) {
+			return;
+		}
 
 		ResultSet rs = Database.select_stmt("*", "books");
 
