@@ -6,7 +6,7 @@ made by
 ahmed arafa (ahmed151515)
 
 role
-    handel database class and link API 
+    handel database class and Connect the application to the database and handle SQL code
 
 ahmed Mohammed (arrm33)
 
