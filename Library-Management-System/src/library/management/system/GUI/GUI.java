@@ -23,7 +23,7 @@ public class GUI extends JFrame {
         EditBook editBook = new EditBook();
         Borrow_GUI borrowGui = new Borrow_GUI();
         BorrowBook borrowBook = new BorrowBook();
-
+        Signup Signup = new Signup();
 
 
         frame.add(loginPanel, "LoginPanel");
@@ -33,7 +33,7 @@ public class GUI extends JFrame {
         frame.add(editBook, "editBook");
         frame.add(borrowGui, "borrowGui");
         frame.add(borrowBook, "borrowBook");
-
+        frame.add(Signup,"Signup");
 
 
         cardLayout.show(frame.getContentPane(), "LoginPanel");

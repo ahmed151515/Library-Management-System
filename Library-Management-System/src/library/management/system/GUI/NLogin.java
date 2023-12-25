@@ -134,6 +134,9 @@ public class NLogin extends JPanel {
     
     public static int user_id;
 
+    private void SignupButtonActionPreformed(java.awt.event.ActionEvent evt){
+        GUI.cardLayout.show(GUI.frame.getContentPane(),"SignupButton");
+    }
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) throws SQLException {//GEN-FIRST:event_loginButtonActionPerformed
 		// TODO add your handling code here:
 		String username = UsernameField.getText();
