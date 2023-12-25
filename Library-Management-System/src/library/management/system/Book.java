@@ -218,13 +218,13 @@ public class Book extends Database {
 		}
 
 		// Insert book categories using the insert_categorise method.
-		insert_categorise(category, 0);
+		insert_categorise();
 
 		return result;
 	}
 
 
-	private int[] insert_categorise(ArrayList<String> category, int size) throws SQLException {
+	private int[] insert_categorise() throws SQLException {
 		// Insert book categories into the 'book_categories' table.
 
 
@@ -238,7 +238,7 @@ public class Book extends Database {
 				// Set the values for the placeholders in the prepared statement.
 				stmt.setInt(1, getBook_id());
 				stmt.setString(2, category.get(i));
-				stmt.setInt(3, i + size);
+				stmt.setInt(3, i);
 
 				// Execute the second insert query.
 				stmt.addBatch();
@@ -259,106 +259,23 @@ public class Book extends Database {
 		return null;
 	}
 
-	/**
-	 * Handles the editing of book categorization in a specific category based on the provided size.
-	 *
-	 * This method is responsible for managing the changes in book categorization, such as updating
-	 * category names, indices, and deleting or adding books as needed.
-	 * count is number of category in database
-	 * CASE count - size = 0 No extra category
-	 * CASE count - size < 0 There is an additional category I must add it
-	 * CASE count - size > 0 There is an incomplete category  I must  delete it
-	 *
-	 * @param size  of categorise after edit
-	 * @throws SQLException If a database access error occurs.
-	 */
-	private void handle_edit_categorise(int size) throws SQLException {
-		// SQL query to retrieve the count of books in a specific category
-		ResultSet rs = select_stmt("count(book_id)", "book_categorise", "book_id = " + book_id);
-
-		if (rs.next()) {
-			// Retrieve the count from the result
-			int count = rs.getInt(1);
-			rs.close();
-
-			// Check if there are books to be modified or added
-			if (count - size == 0) {
-				return; // No books to modify or add
-			} else if (count - size > 0) {
-				// Update book categorization based on the required modification size
-				String sql = "UPDATE book_categorise SET category=?, category_index =? WHERE book_ID=? and category_index =?;";
-				stmt = con.prepareStatement(sql);
-
-				for (int i = size; i < count; i++) {
-					// Set the update values
-					stmt.setString(1, "x");
-					stmt.setInt(3, getBook_id());
-					stmt.setInt(4, i);
-					stmt.setInt(2, -1);
-
-					stmt.addBatch(); // Add to the update batch
-				}
-
-				stmt.executeBatch(); // Execute the update batch
-				close_stmt();
-
-				// Delete excess books
-				sql = "delete from book_categorise WHERE book_ID=? and category_index = ?;";
-				stmt = con.prepareStatement(sql);
-				stmt.setInt(1, getBook_id());
-				stmt.setInt(2, -1);
-
-				stmt.executeUpdate(); // Execute the deletion
-				close_stmt();
-
-			} else {
-				// Add extra categories if there are additional categories
-				ArrayList<String> extra_category = new ArrayList<String>();
-				for (int i = count; i < size; i++) {
-					extra_category.add(category.get(i));
-				}
-				insert_categorise(extra_category, count); // Add the extra categories
-			}
-		}
-	}
-
-
-
 	// This function updates a book's information in the 'books' table and its
 	// categories in the 'book_categorise' table.
 	// It requires an Admin object for authorization and a Book object for book
 	// details.
 
-	public int update_categorise(ArrayList<String> category) throws SQLException {
-		handle_edit_categorise(category.size());
-		int result = 0;
-		try {
-			String sql = "UPDATE book_categorise SET category=? WHERE book_ID=? and category_index = ?;";
-			// Prepare the statement for executing the update query.
-			stmt = con.prepareStatement(sql);
-			// Update book categories in the 'book_categorise' table.
-			for (int i = 0; i < category.size(); i++) {
+	private int[] update_categorise(ArrayList<String> category) throws SQLException {
+//		handle_edit_categorise(category.size());
+		String sql = "delete from book_categorise WHERE book_ID=?";
 
-				// Set the values for the placeholders in the prepared statement.
-				stmt.setString(1, category.get(i));
-				stmt.setInt(2, getBook_id());
-				stmt.setInt(3, i);
+		stmt = con.prepareStatement(sql);
 
-				stmt.addBatch();
+		stmt.setInt(1, book_id);
+		stmt.executeUpdate();
+		stmt.close();
 
-			}
-			stmt.executeBatch();
-			// Close the statement.
-			stmt.close();
-		} catch (Exception e) {
-			// Handle exceptions, close the statement, and print the error.
-			stmt.close();
+		return insert_categorise();
 
-			e.printStackTrace();
-		} finally {
-			stmt.close();
-		}
-		return result;
 	}
 
 	@Override
