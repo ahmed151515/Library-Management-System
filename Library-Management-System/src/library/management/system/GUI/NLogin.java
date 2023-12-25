@@ -2,29 +2,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-
 package library.management.system.GUI;
 
-import library.management.system.Admin;
-import library.management.system.Database;
-import library.management.system.User;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import library.management.system.Admin;
+import library.management.system.User;
 
 /**
  *
  * @author Ahmed
  */
-public class NLogin extends javax.swing.JPanel {
+public class Login extends javax.swing.JPanel {
 
     /**
-     * Creates new form NLogin
+     * Creates new form Login
      */
-    public NLogin() {
+    public Login() {
         initComponents();
     }
 
@@ -39,103 +33,109 @@ public class NLogin extends javax.swing.JPanel {
         java.awt.GridBagConstraints gridBagConstraints;
 
         LoginLabel = new javax.swing.JLabel();
-        SendButton = new javax.swing.JButton();
+        UsernameField = new javax.swing.JTextField();
         PasswordField = new javax.swing.JPasswordField();
-        UserIdTextField = new javax.swing.JTextField();
-        UserIdLabel = new javax.swing.JLabel();
+        SignupButton = new javax.swing.JButton();
+        LoginButton = new javax.swing.JButton();
+        UsernameLabel = new javax.swing.JLabel();
         PasswordLabel = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(20, 90, 100));
+        setEnabled(false);
+        setPreferredSize(new java.awt.Dimension(1050, 500));
         setLayout(new java.awt.GridBagLayout());
 
-        LoginLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        LoginLabel.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         LoginLabel.setText("Login");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(74, 118, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(50, 71, 0, 0);
         add(LoginLabel, gridBagConstraints);
 
-        SendButton.setText("Send");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(89, 117, 85, 0);
-        add(SendButton, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.ipadx = 347;
-        gridBagConstraints.anchor = GridBagConstraints.CENTER;
-        gridBagConstraints.insets = new java.awt.Insets(18, 328, 0, 311);
-        add(PasswordField, gridBagConstraints);
-
-        SendButton.addActionListener(new java.awt.event.ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-	            try {
-		            loginButtonActionPerformed(e);
-	            } catch (SQLException ex) {
-		            throw new RuntimeException(ex);
-	            }
-            }
-        });
-
-        UserIdTextField.addActionListener(new java.awt.event.ActionListener() {
+        UsernameField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                UserIdTextFieldActionPerformed(evt);
+                UsernameFieldActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.ipadx = 347;
-        gridBagConstraints.anchor = GridBagConstraints.CENTER;
-        gridBagConstraints.insets = new java.awt.Insets(18, 328, 0, 311);
-        add(UserIdTextField, gridBagConstraints);
+        gridBagConstraints.ipadx = 353;
+        gridBagConstraints.ipady = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(15, 291, 0, 301);
+        add(UsernameField, gridBagConstraints);
 
-        UserIdLabel.setText("User name");
+        PasswordField.setText("jPasswordField1");
+        PasswordField.setPreferredSize(new java.awt.Dimension(60, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.ipadx = 353;
+        gridBagConstraints.ipady = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(15, 291, 0, 301);
+        add(PasswordField, gridBagConstraints);
+
+        SignupButton.setText("Sign up");
+        SignupButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SignupButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(50, 296, 94, 0);
+        add(SignupButton, gridBagConstraints);
+
+        LoginButton.setText("Login");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(50, 100, 90, 290);
+        add(LoginButton, gridBagConstraints);
+
+        UsernameLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        UsernameLabel.setText("Username");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(92, 328, 0, 0);
-        add(UserIdLabel, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(50, 291, 0, 0);
+        add(UsernameLabel, gridBagConstraints);
 
+        PasswordLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         PasswordLabel.setText("Password");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(93, 328, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(25, 291, 0, 0);
         add(PasswordLabel, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void UserIdTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserIdTextFieldActionPerformed
+    private void UsernameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsernameFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_UserIdTextFieldActionPerformed
+    }//GEN-LAST:event_UsernameFieldActionPerformed
 
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel LoginLabel;
-    private javax.swing.JPasswordField PasswordField;
-    private javax.swing.JLabel PasswordLabel;
-    private javax.swing.JButton SendButton;
-    private javax.swing.JLabel UserIdLabel;
-    private javax.swing.JTextField UserIdTextField;
-    // End of variables declaration//GEN-END:variables
-// -------------------------------------------------------------------------------
-
+    private void SignupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignupButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SignupButtonActionPerformed
+    
     public static int user_id;
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) throws SQLException {//GEN-FIRST:event_loginButtonActionPerformed
 		// TODO add your handling code here:
-		String username = UserIdTextField.getText();
+		String username = UsernameField.getText();
 
 		char[] passwordChars = PasswordField.getPassword();
 		String password = new String(passwordChars);
@@ -153,12 +153,14 @@ public class NLogin extends javax.swing.JPanel {
 		}
 
 	}//GEN-LAST:event_loginButtonActionPerformed
-// -------------------------------------------------------------------------------
 
-	private void userIdTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userIdTextFieldActionPerformed
-		// TODO add your handling code here:
-	}//GEN-LAST:event_userIdTextFieldActionPerformed
-
-
-	// Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton LoginButton;
+    private javax.swing.JLabel LoginLabel;
+    private javax.swing.JPasswordField PasswordField;
+    private javax.swing.JLabel PasswordLabel;
+    private javax.swing.JButton SignupButton;
+    private javax.swing.JTextField UsernameField;
+    private javax.swing.JLabel UsernameLabel;
+    // End of variables declaration//GEN-END:variables
 }
