@@ -3,22 +3,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package library.management.system.GUI;
-
+import javax.swing.*;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import library.management.system.Admin;
+import library.management.system.Database;
 import library.management.system.User;
 
 /**
  *
  * @author Ahmed
  */
-public class Login extends javax.swing.JPanel {
+public class NLogin extends JPanel {
 
     /**
      * Creates new form Login
      */
-    public Login() {
+    public NLogin() {
         initComponents();
     }
 
