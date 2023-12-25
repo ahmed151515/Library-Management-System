@@ -5,7 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.sql.SQLException;
 
-public class GUI {
+public class GUI extends JFrame {
 
     static JFrame frame = new JFrame("Library Management System");
     static CardLayout cardLayout;
@@ -22,6 +22,7 @@ public class GUI {
         AddBook addBook = new AddBook();
         EditBook editBook = new EditBook();
         Borrow_GUI borrowGui = new Borrow_GUI();
+        BorrowBook borrowBook = new BorrowBook();
 
 
 
@@ -31,6 +32,7 @@ public class GUI {
         frame.add(addBook, "addBook");
         frame.add(editBook, "editBook");
         frame.add(borrowGui, "borrowGui");
+        frame.add(borrowBook, "borrowBook");
 
 
 

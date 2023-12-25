@@ -72,6 +72,7 @@ public class NLogin extends javax.swing.JPanel {
         gridBagConstraints.anchor = GridBagConstraints.CENTER;
         gridBagConstraints.insets = new java.awt.Insets(18, 328, 0, 311);
         add(PasswordField, gridBagConstraints);
+
         SendButton.addActionListener(new java.awt.event.ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

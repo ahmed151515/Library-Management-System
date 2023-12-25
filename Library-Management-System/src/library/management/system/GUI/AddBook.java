@@ -163,7 +163,11 @@ public class AddBook extends javax.swing.JPanel {
         jButton1.setText("<<<");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+	            try {
+		            jButton1ActionPerformed(evt);
+	            } catch (SQLException e) {
+		            throw new RuntimeException(e);
+	            }
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();

@@ -57,6 +57,7 @@ public class Borrow extends Database {
 		return end_date;
 	}
 	public Date getEnd_date_as_sqlFormat() {
+		// end_date = "2025-03-06"
 		return Date.valueOf(end_date);
 	}
 	/**

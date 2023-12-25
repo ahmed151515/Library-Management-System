@@ -229,7 +229,7 @@ public class EditBook extends javax.swing.JPanel {
 				JOptionPane.showMessageDialog(GUI.frame, "The book has been successfully Edited");
 				NAdminGui.refresh(book_id);
 			} else {
-				JOptionPane.showMessageDialog(GUI.frame, "Failed to add the book");
+				JOptionPane.showMessageDialog(GUI.frame, "Failed to edit the book");
 
 			}
 		} catch (NumberFormatException ee) {
@@ -245,6 +245,7 @@ public class EditBook extends javax.swing.JPanel {
 
 	public static void setData(int book_ID) throws SQLException {
 		EditBook.book_id = book_ID;
+
 		ResultSet rs = Database.select_stmt("*", "books", "book_Id = " + book_ID);
 		if (rs.next()) {
 			bookname.setText(rs.getString("book_name"));

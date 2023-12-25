@@ -110,7 +110,7 @@ public class User_gui extends javax.swing.JPanel {
 	}// </editor-fold>//GEN-END:initComponents
 
 	private void BorrowBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrowBookActionPerformed
-		// TODO add your handling code here:
+		GUI.cardLayout.show(GUI.frame.getContentPane(),"borrowBook");
 	}//GEN-LAST:event_BorrowBookActionPerformed
 
 // -------------------------------------------------------------------------------
@@ -140,6 +140,31 @@ public class User_gui extends javax.swing.JPanel {
 		rs.close();
 		Database.close_stmt();
 
+	}
+
+	public static void refresh(int book_id) throws SQLException {
+
+			int rowIndex = findRowIndex(book_id);
+
+			if (rowIndex != -1) {
+
+				model.removeRow(rowIndex);
+//				model.fireTableRowsDeleted(rowIndex-1,rowIndex+1);
+			}
+		}
+
+
+
+
+	private static int findRowIndex(int book_id) {
+
+
+		for (int i = 0; i < model.getRowCount(); i++) {
+			if ((int) model.getValueAt(i, 0) == book_id) {
+				return i;
+			}
+		}
+		return -1;
 	}
 // -------------------------------------------------------------------------------
 

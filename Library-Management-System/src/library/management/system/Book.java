@@ -230,7 +230,7 @@ public class Book extends Database {
 
 		try {
 			// Prepare the statement for executing the second insert query.
-			sql = "INSERT INTO book_categorise VALUES (?,?,?);";
+			sql = "INSERT INTO book_categorise VALUES (?,?);";
 			stmt = con.prepareStatement(sql);
 			for (int i = 0; i < category.size(); i++) {
 
@@ -238,7 +238,6 @@ public class Book extends Database {
 				// Set the values for the placeholders in the prepared statement.
 				stmt.setInt(1, getBook_id());
 				stmt.setString(2, category.get(i));
-				stmt.setInt(3, i);
 
 				// Execute the second insert query.
 				stmt.addBatch();
@@ -264,7 +263,7 @@ public class Book extends Database {
 	// It requires an Admin object for authorization and a Book object for book
 	// details.
 
-	private int[] update_categorise(ArrayList<String> category) throws SQLException {
+	private int[] update_categorise() throws SQLException {
 //		handle_edit_categorise(category.size());
 		String sql = "delete from book_categorise WHERE book_ID=?";
 
@@ -280,7 +279,7 @@ public class Book extends Database {
 
 	@Override
 	public int update() throws SQLException {
-		update_categorise(category);
+		update_categorise();
 		// Update book information in the 'books' table.
 		String sql = "UPDATE books SET"
 				+ " book_name=?," // 1

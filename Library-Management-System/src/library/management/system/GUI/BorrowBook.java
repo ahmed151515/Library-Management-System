@@ -4,6 +4,16 @@
  */
 package library.management.system.GUI;
 
+import library.management.system.Book;
+import library.management.system.Borrow;
+import library.management.system.Database;
+
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  *
  * @author Ahmed
@@ -67,7 +77,7 @@ public class BorrowBook extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(20, 100, 20, 100);
         add(BookIdField, gridBagConstraints);
 
-        EndDateField.setText("YYYY-MM-DD");
+        EndDateField.setText("");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
@@ -96,7 +106,7 @@ public class BorrowBook extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(100, 100, 0, 0);
         add(EnterBookIdLabel, gridBagConstraints);
 
-        EndDateLabel.setText("Enter End Date");
+        EndDateLabel.setText("Enter End Date  (YYYY-MM-DD)");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -112,11 +122,21 @@ public class BorrowBook extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LAST_LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(60, 60, 60, 60);
         add(BackButton, gridBagConstraints);
+        BackButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                backButton(e);
+            }
+        });
 
         SendButton.setText("Send");
         SendButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SendButtonActionPerformed(evt);
+	            try {
+		            SendButtonActionPerformed(evt);
+	            } catch (SQLException e) {
+		            throw new RuntimeException(e);
+	            }
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -140,8 +160,29 @@ public class BorrowBook extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_formAncestorResized
 
-    private void SendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendButtonActionPerformed
-        // TODO add your handling code here:
+    private void SendButtonActionPerformed(java.awt.event.ActionEvent evt) throws SQLException {//GEN-FIRST:event_SendButtonActionPerformed
+        int book_id = Integer.parseInt(BookIdField.getText());
+        String end_date = EndDateField.getText();
+
+        ResultSet rs = Database.select_stmt("*", "User_GUI", "book_id=" + book_id);
+
+        if (rs.next()) {
+                Borrow borrow = new Borrow(NLogin.user_id,book_id,end_date);
+               int result = borrow.insert();
+               if (result > 0) {
+                   JOptionPane.showMessageDialog(GUI.frame, "borrow is successfully");
+                   User_gui.refresh(book_id);
+               } else {
+                   JOptionPane.showMessageDialog(GUI.frame,"borrow is Failed","Error", JOptionPane.WARNING_MESSAGE);
+               }
+        }else {
+                JOptionPane.showMessageDialog(GUI.frame,"not found book has id: " + book_id
+                    ,"Error", JOptionPane.WARNING_MESSAGE);
+        }
+
+    }//GEN-LAST:event_SendButtonActionPerformed
+    private void backButton(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendButtonActionPerformed
+        GUI.cardLayout.show(GUI.frame.getContentPane(), "userGui");
     }//GEN-LAST:event_SendButtonActionPerformed
 
 

@@ -1,4 +1,3 @@
-
 -- create tables
 create table admins
 (
@@ -25,12 +24,11 @@ create table books
 	book_author     varchar(30),
 	admin_ID        int  foreign Key REFERENCES  admins(admin_ID)
 	);
-
+	
 create table book_categorise
 (
 	book_ID int  foreign Key REFERENCES  books(book_ID) on delete CASCADE,
 	category varchar(30),
-	category_index int not null
 );
 
 create table user_borrow_books
@@ -46,7 +44,7 @@ create index idx_borrow
 on user_borrow_books(user_id, book_id);
 
 -- view
-CREATE VIEW Borro_GUI 
+CREATE VIEW Borro_GUI
 as
 select
 	books.book_ID,
@@ -58,6 +56,7 @@ from books  inner join user_borrow_books
 on books.book_ID = user_borrow_books.book_ID 
 inner join users
 on  users.user_ID = user_borrow_books.user_ID;
+
 
 CREATE VIEW User_GUI
 as
@@ -74,9 +73,6 @@ where user_borrow_books.book_ID is null;
 -- set default admin and user
 insert into admins values ('admin','admin', 'admin@gmail.com');
 insert into users values ('user','12345', 'user@gmail.com');
-
-
-
 
 
 
