@@ -50,7 +50,6 @@ public class NLogin extends JPanel {
         UsernameLabel = new javax.swing.JLabel();
         PasswordLabel = new javax.swing.JLabel();
 
-
         setEnabled(false);
         setPreferredSize(new java.awt.Dimension(1050, 500));
         setLayout(new java.awt.GridBagLayout());
@@ -64,7 +63,11 @@ public class NLogin extends JPanel {
         gridBagConstraints.insets = new java.awt.Insets(50, 71, 0, 0);
         add(LoginLabel, gridBagConstraints);
 
-
+        UsernameField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UsernameFieldActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -74,7 +77,6 @@ public class NLogin extends JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(15, 291, 0, 301);
         add(UsernameField, gridBagConstraints);
-
 
         PasswordField.setPreferredSize(new java.awt.Dimension(60, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -90,7 +92,7 @@ public class NLogin extends JPanel {
         SignupButton.setText("Sign up");
         SignupButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SignupButtonActionPreformed(evt);
+                SignupButtonActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -108,17 +110,6 @@ public class NLogin extends JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(50, 100, 90, 290);
         add(LoginButton, gridBagConstraints);
-
-        LoginButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-	            try {
-		            loginButtonActionPerformed(e);
-	            } catch (SQLException ex) {
-		            throw new RuntimeException(ex);
-	            }
-            }
-        });
 
         UsernameLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         UsernameLabel.setText("Username");
