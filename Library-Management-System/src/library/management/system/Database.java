@@ -116,7 +116,7 @@ public abstract class Database {
 	// returns the ResultSet.
 	public static ResultSet select_stmt(String columns, String tables, String conditions) throws SQLException {
 		// Construct the SQL query by concatenating columns, tables, and conditions.
-		String sql = "SELECT " + columns + " FROM " + tables + " WHERE " + conditions + ";";
+		String sql = "SELECT " + columns + " FROM " + tables + " WHERE " + conditions+";";
 
 		try {
 			// Prepare the statement and execute the query.

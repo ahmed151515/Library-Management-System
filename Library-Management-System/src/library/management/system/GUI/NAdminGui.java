@@ -43,7 +43,7 @@ public class NAdminGui extends javax.swing.JPanel {
 		jScrollPane1 = new javax.swing.JScrollPane();
 
 
-		EditBookButton.setBackground(new java.awt.Color(20, 100, 10));
+
 		EditBookButton.setText("Edit book");
 		EditBookButton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -56,7 +56,7 @@ public class NAdminGui extends javax.swing.JPanel {
 			}
 		});
 
-		AddBookButton.setBackground(new java.awt.Color(100, 20, 10));
+
 		AddBookButton.setText("Add book");
 		AddBookButton.addActionListener(new java.awt.event.ActionListener() {
 			@Override

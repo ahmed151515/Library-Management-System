@@ -4,8 +4,17 @@
  */
 package library.management.system.GUI;
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.text.TextAction;
+
 import library.management.system.Admin;
 import library.management.system.Database;
 import library.management.system.User;
@@ -41,7 +50,7 @@ public class NLogin extends JPanel {
         UsernameLabel = new javax.swing.JLabel();
         PasswordLabel = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(20, 90, 100));
+
         setEnabled(false);
         setPreferredSize(new java.awt.Dimension(1050, 500));
         setLayout(new java.awt.GridBagLayout());
@@ -55,11 +64,7 @@ public class NLogin extends JPanel {
         gridBagConstraints.insets = new java.awt.Insets(50, 71, 0, 0);
         add(LoginLabel, gridBagConstraints);
 
-        UsernameField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                UsernameFieldActionPerformed(evt);
-            }
-        });
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -70,7 +75,7 @@ public class NLogin extends JPanel {
         gridBagConstraints.insets = new java.awt.Insets(15, 291, 0, 301);
         add(UsernameField, gridBagConstraints);
 
-        PasswordField.setText("jPasswordField1");
+
         PasswordField.setPreferredSize(new java.awt.Dimension(60, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -85,7 +90,7 @@ public class NLogin extends JPanel {
         SignupButton.setText("Sign up");
         SignupButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SignupButtonActionPerformed(evt);
+                SignupButtonActionPreformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -103,6 +108,17 @@ public class NLogin extends JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(50, 100, 90, 290);
         add(LoginButton, gridBagConstraints);
+
+        LoginButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+	            try {
+		            loginButtonActionPerformed(e);
+	            } catch (SQLException ex) {
+		            throw new RuntimeException(ex);
+	            }
+            }
+        });
 
         UsernameLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         UsernameLabel.setText("Username");
@@ -126,6 +142,8 @@ public class NLogin extends JPanel {
 
     private void UsernameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsernameFieldActionPerformed
         // TODO add your handling code here:
+
+        System.out.println(5464);
     }//GEN-LAST:event_UsernameFieldActionPerformed
 
     private void SignupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignupButtonActionPerformed
@@ -135,7 +153,7 @@ public class NLogin extends JPanel {
     public static int user_id;
 
     private void SignupButtonActionPreformed(java.awt.event.ActionEvent evt){
-        GUI.cardLayout.show(GUI.frame.getContentPane(),"SignupButton");
+        GUI.cardLayout.show(GUI.frame.getContentPane(),"Signup");
     }
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) throws SQLException {//GEN-FIRST:event_loginButtonActionPerformed
 		// TODO add your handling code here:

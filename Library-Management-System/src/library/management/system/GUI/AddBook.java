@@ -226,6 +226,7 @@ public class AddBook extends javax.swing.JPanel {
 					+ "must is number ", "WARNING"
 					, JOptionPane.WARNING_MESSAGE);
 		} catch (SQLException e) {
+
 			throw new RuntimeException(e);
 		}
 	}
