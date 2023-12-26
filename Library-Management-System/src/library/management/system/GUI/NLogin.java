@@ -11,6 +11,8 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.event.AncestorEvent;
+import javax.swing.event.AncestorListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.TextAction;
@@ -103,6 +105,13 @@ public class NLogin extends JPanel {
         gridBagConstraints.insets = new java.awt.Insets(50, 296, 94, 0);
         add(SignupButton, gridBagConstraints);
 
+        SignupButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SignupButtonActionPreformed(e);
+            }
+        });
+
         LoginButton.setText("Login");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
@@ -110,6 +119,17 @@ public class NLogin extends JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(50, 100, 90, 290);
         add(LoginButton, gridBagConstraints);
+
+        LoginButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+	            try {
+		            loginButtonActionPerformed(e);
+	            } catch (SQLException ex) {
+		            throw new RuntimeException(ex);
+	            }
+            }
+        });
 
         UsernameLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         UsernameLabel.setText("Username");

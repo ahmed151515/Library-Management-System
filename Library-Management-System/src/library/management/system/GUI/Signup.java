@@ -93,6 +93,14 @@ public class Signup extends JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(6, 6, 0, 0);
         add(BackButton, gridBagConstraints);
+
+        BackButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                backbutton(e);
+            }
+        });
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -140,6 +148,18 @@ public class Signup extends JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(38, 412, 90, 0);
         add(SignupButton, gridBagConstraints);
+
+        SignupButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+	            try {
+		            SignupButtonActionPerformed(e);
+	            } catch (SQLException ex) {
+		            throw new RuntimeException(ex);
+	            }
+            }
+        });
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 7;

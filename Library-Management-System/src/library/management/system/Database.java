@@ -21,9 +21,9 @@ public abstract class Database {
 			+ "encrypt=true;"
 			+ "trustServerCertificate=true";
 //	 static final String user = "db_aa3272_ahmed1515_admin";
-	 static final String user = "admin"; // DESKTOP-BBEFQFU
+	 static final String user = "ahmed"; // DESKTOP-BBEFQFU
 //	 static final String password = "76549#$gcg";
-	 static final String password = "admin"; // DESKTOP-BBEFQFU
+	 static final String password = "ahmed"; // DESKTOP-BBEFQFU
 
 	// Database connection object
 	protected static Connection con;
