@@ -14,6 +14,7 @@ The Library Management System is a project aimed at facilitating the management 
 
 - **Book Management:** The ability to add and edit available books in the library.
 - **View Borrowed Books:** The ability to see borrowed books with user information.
+- admin username pasword admin
 
 
 

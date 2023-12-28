@@ -13,17 +13,17 @@ public abstract class Database {
 	// Database connection details
 	 static final String url =
 			"jdbc:sqlserver://"
-//			+ "SQL8006.site4now.net:1433;" // server online  (DESKTOP-BBEFQFU)
-			+ "DESKTOP-BBEFQFU;" // (DESKTOP-BBEFQFU)
-			+ "Database=Library_Management_System;" // database name
-//			+ "Database=db_aa3272_ahmed1515;" // database name
+			+ "SQL8006.site4now.net:1433;" // server online  (DESKTOP-BBEFQFU)
+//			+ "DESKTOP-BBEFQFU;" // (DESKTOP-BBEFQFU)
+//			+ "Database=Library_Management_System;" // database name
+			+ "Database=db_aa3272_ahmed1515;" // database name
 //			 + "IntegratedSecurity=true;" // if you want to use Windows Authentication
 			+ "encrypt=true;"
 			+ "trustServerCertificate=true";
-//	 static final String user = "db_aa3272_ahmed1515_admin";
-	 static final String user = "ahmed"; // DESKTOP-BBEFQFU
-//	 static final String password = "76549#$gcg";
-	 static final String password = "ahmed"; // DESKTOP-BBEFQFU
+	 static final String user = "db_aa3272_ahmed1515_admin";
+//	 static final String user = "ahmed"; // DESKTOP-BBEFQFU
+	 static final String password = "76549#$gcg";
+//	 static final String password = "ahmed"; // DESKTOP-BBEFQFU
 
 	// Database connection object
 	protected static Connection con;

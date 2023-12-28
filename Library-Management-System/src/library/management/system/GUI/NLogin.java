@@ -197,3 +197,7 @@ public class NLogin extends JPanel {
     private javax.swing.JLabel UsernameLabel;
     // End of variables declaration//GEN-END:variables
 }
+
+
+
+

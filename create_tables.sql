@@ -73,10 +73,3 @@ where user_borrow_books.book_ID is null;
 -- set default admin and user
 insert into admins values ('admin','admin', 'admin@gmail.com');
 insert into users values ('user','12345', 'user@gmail.com');
-
-
-
-
-
-
-
